@@ -1,0 +1,41 @@
+[project]
+name = "stock-prediction-ml"
+version = "0.1.0"
+description = "ML-based stock prediction with technical and sentiment analysis"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Ken Moore", email = "ken.r.moore@gmail.com"}
+]
+
+dependencies = [
+    "pandas>=1.3.0",
+    "numpy>=1.23.0",
+    "scikit-learn>=1.1.0",
+    "yfinance>=0.1.74",
+    "ta>=0.10.2",
+    "matplotlib>=3.5.0",
+    "seaborn>=0.12.0",
+    "newsapi-python>=0.2.6",
+    "textblob>=0.17.1",
+    "nltk>=3.6.3",
+    "pyyaml>=6.0",
+    "joblib>=1.1.0",
+    "jupyter>=1.0.0",
+    "typing-extensions>=4.0.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.25.1",
+    "urllib3>=1.26.5",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.black]
+line-length = 88
+include = '\.pyi?$'
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]

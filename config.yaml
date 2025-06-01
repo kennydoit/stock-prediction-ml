@@ -1,0 +1,64 @@
+# Data paths
+data_path: "data/"
+
+# Stock symbols
+target_symbol: "MSFT"
+peer_symbols:
+  - "AAPL"
+  - "AMZN"
+  - "GOOGL"
+  - "MSFT"
+  - "META"
+  - "ORCL"
+  - "IBM"
+  - "CRM"
+  - "ADBE"
+  - "NVDA"
+  - "INTC"
+  - "SPY"
+  - "QQQ"
+  - "XLK"
+  - "VTI"
+
+
+# Model parameters
+prediction_horizon: 5  # days
+training_window: 252  # trading days (1 year)
+
+# Feature parameters
+rsi_period: 14
+macd_fast: 12
+macd_slow: 26
+macd_signal: 9
+bollinger_window: 15
+bollinger_std: 2
+
+# API configuration
+yahoo_finance:
+  batch_size: 100
+  rate_limit: 2000  # requests per hour
+
+# Backtesting parameters
+backtesting:
+    initial_capital: 5000
+    entry_threshold: 0.01
+    exit_threshold: -0.01
+    position_size: 0.1  # 10% of capital per trade
+    max_positions: 5
+    stop_loss: 0.02    # 2% stop loss
+    take_profit: 0.05  # 5% take profit
+    max_trades: 50     # Maximum number of trades allowed
+
+# Data parameters
+historical_period:
+    start_date: "2022-01-01"  # 1 year lookback
+    end_date: "2023-12-31"
+    
+# Sentiment parameters
+sentiment:
+    api_key: "7b5607dfb91a4cce947e77392bd7b58f"  # Get from newsapi.org
+    api_endpoint: "https://newsapi.org/v2"
+    cache_dir: "data/cache/sentiment"
+    request_delay: 1.0
+    max_retries: 3
+    news_days_lookback: 7  # Number of days to look back for news
