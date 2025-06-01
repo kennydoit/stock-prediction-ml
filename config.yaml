@@ -54,11 +54,3 @@ historical_period:
     start_date: "2022-01-01"  # 1 year lookback
     end_date: "2023-12-31"
     
-# Sentiment parameters
-sentiment:
-    api_key: "7b5607dfb91a4cce947e77392bd7b58f"  # Get from newsapi.org
-    api_endpoint: "https://newsapi.org/v2"
-    cache_dir: "data/cache/sentiment"
-    request_delay: 1.0
-    max_retries: 3
-    news_days_lookback: 7  # Number of days to look back for news
