@@ -100,3 +100,10 @@ periods:
     start: '2025-01-01'
     end: '2025-06-01'
 
+# Alpaca API configuration
+alpaca:
+  api_key: "PKZ9T5ZGPQSFJJSB0J4N"
+  secret_key: "zEyCkauW58QOnloTgQHj5kBNQg78SJfbGUDm4fYg"
+  base_url: "https://paper-api.alpaca.markets/v2"  # Paper trading
+  # base_url: "https://api.alpaca.markets"  # Live trading (use with caution)
+
