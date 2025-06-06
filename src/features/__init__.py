@@ -18,14 +18,8 @@ class FeatureEngineer:
         df = self.technical.add_indicators(df)
         
         return df
-    
-    def add_sentiment_features(self, data: pd.DataFrame) -> pd.DataFrame:
-        """Optional method to add sentiment features."""
-        if self.sentiment is None:
-            try:
-                from .sentiment.analyzer import SentimentAnalyzer
-                self.sentiment = SentimentAnalyzer(self.config)
-            except ImportError:
-                return data
-            
-        return self.sentiment.get_sentiment_features(data)
+
+from .features import FeatureEngineer
+
+__all__ = ['FeatureEngineer']
+
