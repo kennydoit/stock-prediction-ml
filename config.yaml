@@ -7,7 +7,6 @@ peer_symbols:
   - "AAPL"
   - "AMZN"
   - "GOOGL"
-  - "MSFT"
   - "META"
   - "ORCL"
   - "IBM"
@@ -20,9 +19,23 @@ peer_symbols:
   - "XLK"
   - "VTI"
 
-
 # Model parameters
-prediction_horizon: 5  # days
+prediction_horizon: 5
+test_size: 0.2
+
+# Trading strategy parameters
+trading:
+  initial_capital: 10000      # Starting capital in USD
+  max_position_size: 0.2      # Max 20% of capital per position
+  min_trade_size: 100         # Minimum trade size in USD
+  transaction_cost: 0.001     # 0.1% transaction cost
+  risk_free_rate: 0.02        # 2% annual risk-free rate for Sharpe calculation
+  
+  thresholds:
+    long_signal: 0.008        # 0.8% prediction threshold for long
+    short_signal: -0.008      # -0.8% prediction threshold for short
+    stop_loss: -0.05          # 5% stop loss
+    take_profit: 0.10         # 10% take profit
 
 # Feature parameters
 features:
@@ -60,14 +73,13 @@ features:
       enabled: true
       periods: [5, 10, 20, 50]
   
-  # Lagged price features
   lags:
     enabled: true
     price_columns: ["Close", "High", "Low", "Open", "Volume"]
-    lag_periods: [1, 2, 3, 5, 10, 20]  # Trading days
-    include_target: true   # Include target symbol lagged features
-    include_peers: true    # Include peer symbols lagged features
-    rolling_features:      # Additional rolling window features
+    lag_periods: [1, 2, 3, 5]
+    include_target: true
+    include_peers: false
+    rolling_features:
       enabled: true
       windows: [5, 10, 20]
       functions: ["mean", "std", "min", "max"]
@@ -92,7 +104,7 @@ backtesting:
 periods:
   training:
     start: '2020-01-01'
-    end: '2023-12-31'
+    end: '2024-12-31'
   test:
     start: '2024-01-01'
     end: '2024-12-31' 

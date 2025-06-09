@@ -3,13 +3,13 @@ import pandas as pd
 import yaml
 from datetime import datetime, timedelta
 import logging
-from typing import Optional
+from typing import Optional, List
 
 logger = logging.getLogger(__name__)
 
 class AlpacaDataLoader:
     """
-    Data loader for fetching stock data from Alpaca Markets API
+    Data loader for fetching stock data and news from Alpaca Markets API
     """
     
     def __init__(self, config_path: str):
@@ -31,7 +31,6 @@ class AlpacaDataLoader:
             key_id=self.alpaca_config.get('api_key'),
             secret_key=self.alpaca_config.get('secret_key'),
             base_url=self.alpaca_config.get('base_url', 'https://paper-api.alpaca.markets')
-            # Remove api_version parameter - it's causing the duplicate /v2
         )
         
         logger.info("Alpaca API connection initialized")
@@ -73,12 +72,6 @@ class AlpacaDataLoader:
                 logger.warning(f"No data found for {symbol}")
                 return pd.DataFrame()
             
-            # Debug: Check what we have
-            logger.info(f"Raw columns from Alpaca: {list(bars.columns)}")
-            logger.info(f"DataFrame shape: {bars.shape}")
-            logger.info(f"Index type: {type(bars.index)}")
-            logger.info(f"Index name: {bars.index.name}")
-            
             # The timestamp is already in the index, not as a column
             # Just rename the columns to our standard format
             column_mapping = {
@@ -101,15 +94,186 @@ class AlpacaDataLoader:
                 bars_clean.index = bars_clean.index.tz_convert('America/New_York')
             
             logger.info(f"Successfully fetched {len(bars_clean)} records for {symbol}")
-            logger.info(f"Final columns: {list(bars_clean.columns)}")
             return bars_clean
             
         except Exception as e:
             logger.error(f"Error fetching data for {symbol}: {str(e)}")
-            logger.error(f"Error type: {type(e).__name__}")
-            import traceback
-            logger.error(f"Traceback: {traceback.format_exc()}")
             return pd.DataFrame()
+    
+    def fetch_news(self, symbol: str = None, start_date: str = None, 
+                   end_date: str = None, limit: int = 100) -> pd.DataFrame:
+        """
+        Fetch news articles from Alpaca
+        
+        Parameters:
+        -----------
+        symbol : str, optional
+            Stock symbol to filter news (e.g., 'AAPL')
+            If None, fetches general market news
+        start_date : str, optional
+            Start date in 'YYYY-MM-DD' format
+        end_date : str, optional
+            End date in 'YYYY-MM-DD' format
+        limit : int
+            Maximum number of articles to fetch (default: 100, max: 1000)
+            
+        Returns:
+        --------
+        pd.DataFrame
+            DataFrame with news articles including timestamp, headline, summary, symbols
+        """
+        try:
+            logger.info(f"Fetching news for symbol: {symbol}, dates: {start_date} to {end_date}")
+            
+            # Prepare parameters for news API
+            params = {
+                'limit': min(limit, 1000)  # Alpaca max limit is 1000
+            }
+            
+            # Note: Alpaca API uses 'symbol' not 'symbols'
+            if symbol:
+                params['symbol'] = symbol
+            
+            if start_date:
+                params['start'] = start_date
+                
+            if end_date:
+                params['end'] = end_date
+            
+            # Debug: Print the actual API call parameters
+            logger.info(f"API call parameters: {params}")
+            
+            # Fetch news from Alpaca
+            news = self.api.get_news(**params)
+            
+            if not news:
+                logger.warning("No news articles found")
+                return pd.DataFrame()
+            
+            # Convert news to DataFrame
+            news_data = []
+            for article in news:
+                try:
+                    news_data.append({
+                        'timestamp': pd.to_datetime(article.created_at),
+                        'headline': article.headline,
+                        'summary': getattr(article, 'summary', ''),
+                        'content': getattr(article, 'content', ''),
+                        'author': getattr(article, 'author', ''),
+                        'symbols': getattr(article, 'symbols', []),
+                        'url': getattr(article, 'url', ''),
+                        'article_id': getattr(article, 'id', '')
+                    })
+                except Exception as e:
+                    logger.warning(f"Error processing article: {e}")
+                    continue
+            
+            if not news_data:
+                logger.warning("No valid news articles processed")
+                return pd.DataFrame()
+            
+            df = pd.DataFrame(news_data)
+            
+            # Set timestamp as index
+            df.set_index('timestamp', inplace=True)
+            
+            # Ensure timezone-aware datetime index
+            if df.index.tz is None:
+                df.index = df.index.tz_localize('UTC')
+            
+            # Sort by timestamp (newest first)
+            df.sort_index(ascending=False, inplace=True)
+            
+            logger.info(f"Successfully fetched {len(df)} news articles")
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error fetching news: {str(e)}")
+            # Print more detailed error information
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+            return pd.DataFrame()
+    
+    def fetch_news_for_symbol(self, symbol: str, days_back: int = 7, limit: int = 50) -> pd.DataFrame:
+        """
+        Fetch recent news for a specific symbol
+        
+        Parameters:
+        -----------
+        symbol : str
+            Stock symbol (e.g., 'AAPL')
+        days_back : int
+            Number of days to look back for news (default: 7)
+        limit : int
+            Maximum number of articles (default: 50)
+            
+        Returns:
+        --------
+        pd.DataFrame
+            DataFrame with news articles for the symbol
+        """
+        end_date = datetime.now().strftime('%Y-%m-%d')
+        start_date = (datetime.now() - timedelta(days=days_back)).strftime('%Y-%m-%d')
+        
+        return self.fetch_news(
+            symbol=symbol,
+            start_date=start_date,
+            end_date=end_date,
+            limit=limit
+        )
+    
+    def test_api_connection(self) -> dict:
+        """
+        Test the API connection and return status information
+        
+        Returns:
+        --------
+        dict
+            Connection status and capabilities
+        """
+        result = {
+            'connection_status': 'unknown',
+            'account_access': False,
+            'news_access': False,
+            'data_access': False,
+            'error_messages': []
+        }
+        
+        try:
+            # Test account access
+            account = self.api.get_account()
+            result['account_access'] = True
+            result['connection_status'] = 'connected'
+            logger.info("✅ Account access working")
+        except Exception as e:
+            result['error_messages'].append(f"Account access failed: {str(e)}")
+            logger.error(f"❌ Account access failed: {str(e)}")
+        
+        try:
+            # Test data access with a simple stock data request
+            test_data = self.api.get_bars('AAPL', '1Day', limit=1)
+            if test_data:
+                result['data_access'] = True
+                logger.info("✅ Stock data access working")
+            else:
+                result['error_messages'].append("Stock data access returned empty result")
+        except Exception as e:
+            result['error_messages'].append(f"Stock data access failed: {str(e)}")
+            logger.error(f"❌ Stock data access failed: {str(e)}")
+        
+        try:
+            # Test news access
+            test_news = self.api.get_news(limit=1)
+            if test_news:
+                result['news_access'] = True
+                logger.info("✅ News access working")
+            else:
+                result['error_messages'].append("News access returned empty result")
+        except Exception as e:
+            result['error_messages'].append(f"News access failed: {str(e)}")
+            logger.error(f"❌ News access failed: {str(e)}")
+        
+        return result
     
     def get_account_info(self) -> dict:
         """
@@ -131,11 +295,6 @@ class AlpacaDataLoader:
             }
         except Exception as e:
             logger.error(f"Error getting account info: {str(e)}")
-            logger.error(f"Error type: {type(e).__name__}")
-            # Check if it's an authentication issue
-            if "404" in str(e) or "401" in str(e):
-                logger.error("Authentication failed. Please check your API keys and base URL.")
-                logger.error("Make sure you have valid Alpaca API keys in your config.yaml")
             return {}
     
     def get_positions(self) -> pd.DataFrame:
@@ -170,38 +329,29 @@ class AlpacaDataLoader:
             return pd.DataFrame()
 
 
-class UnifiedDataLoader:
-    """
-    Unified data loader supporting both yfinance and Alpaca
-    """
-    def __init__(self, config_path, source='alpaca'):
-        self.source = source
-        self.config_path = config_path
-        
-        if source == 'alpaca':
-            self.alpaca_loader = AlpacaDataLoader(config_path)
-        elif source == 'yfinance':
-            # Import only when needed to avoid dependency issues
-            from .data_loader import StockDataLoader
-            self.yf_loader = StockDataLoader(config_path)
-        else:
-            raise ValueError(f"Unsupported data source: {source}")
-    
-    def fetch_stock_data(self, symbol, start_date, end_date):
-        if self.source == 'alpaca':
-            return self.alpaca_loader.fetch_stock_data(symbol, start_date, end_date)
-        else:
-            return self.yf_loader.fetch_stock_data(symbol, start_date, end_date)
-
-
 # Example usage (only when running as main module)
 if __name__ == "__main__":
     # Test the Alpaca data loader
     print("Testing Alpaca data loader...")
     
     loader = AlpacaDataLoader('../config.yaml')
-    data = loader.fetch_stock_data('AAPL', '2024-01-01', '2024-01-10')
-    print(f"Fetched {len(data)} records")
     
-    if not data.empty:
-        print(data.head())
+    # Test API connection
+    print("Testing API connection...")
+    connection_status = loader.test_api_connection()
+    print(f"Connection status: {connection_status}")
+    
+    # Test stock data
+    print("\nTesting stock data...")
+    data = loader.fetch_stock_data('AAPL', '2024-01-01', '2024-01-10')
+    print(f"Fetched {len(data)} stock records")
+    
+    # Test news data
+    print("\nTesting news data...")
+    news = loader.fetch_news_for_symbol('AAPL', days_back=3, limit=5)
+    print(f"Fetched {len(news)} news articles")
+    
+    if not news.empty:
+        print("\nSample headlines:")
+        for idx, row in news.head(3).iterrows():
+            print(f"- {row['headline']}")
