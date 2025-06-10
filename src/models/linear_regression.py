@@ -7,7 +7,6 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-from sklearn.preprocessing import StandardScaler
 import logging
 
 logger = logging.getLogger(__name__)
@@ -29,54 +28,37 @@ def prepare_target_variable(features_df: pd.DataFrame, target_days: int = 1) -> 
     
     return features_df
 
-def train_linear_regression_model(features_df: pd.DataFrame, config: dict):
-    """Train linear regression model"""
+def train_linear_regression_model(X, y, fit_intercept: bool = True):
+    """Train linear regression model (no scaling of features or target)
+    X: DataFrame of features (already selected and ordered)
+    y: Series or array of target values (already aligned)
+    """
     
-    logger.info("Training linear regression model")
+    logger.info("Training linear regression model (no scaling)")
     
-    if features_df.empty:
-        logger.error("Empty features DataFrame provided")
+    if X.empty or y.empty:
+        logger.error("Empty features or target provided")
         return None
-    
-    # Prepare target variable
-    target_days = config.get('prediction_horizon_days', 1)
-    df_with_target = prepare_target_variable(features_df, target_days)
-    
-    if df_with_target.empty:
-        logger.error("Could not prepare target variable")
-        return None
-    
-    target_col = f'target_return_{target_days}d'
-    
-    # Separate features and target
-    feature_columns = [col for col in df_with_target.columns 
-                      if col not in [target_col, 'returns_1d'] and not col.startswith('target_')]
-    
-    X = df_with_target[feature_columns]
-    y = df_with_target[target_col]
-    
+
+    feature_columns = list(X.columns)
     logger.info(f"Training with {X.shape[0]} samples and {X.shape[1]} features")
     logger.info(f"Feature columns: {feature_columns[:10]}...")  # Show first 10
-    
+
     # Split data
-    test_size = config.get('test_size', 0.2)
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=test_size, shuffle=False  # Don't shuffle for time series
-    )
-    
-    # Scale features
-    scaler = StandardScaler()
-    X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.transform(X_test)
-    
-    # Train model
-    model = LinearRegression()
-    model.fit(X_train_scaled, y_train)
-    
+    test_size = 0.2  # Or pass as argument if needed
+    n_test = int(len(X) * test_size)
+    n_train = len(X) - n_test
+    X_train, X_test = X.iloc[:n_train], X.iloc[n_train:]
+    y_train, y_test = y.iloc[:n_train], y.iloc[n_train:]
+
+    # Train model (no scaling)
+    model = LinearRegression(fit_intercept=fit_intercept)
+    model.fit(X_train, y_train)
+
     # Make predictions
-    y_train_pred = model.predict(X_train_scaled)
-    y_test_pred = model.predict(X_test_scaled)
-    
+    y_train_pred = model.predict(X_train)
+    y_test_pred = model.predict(X_test)
+
     # Calculate metrics
     metrics = {
         'train_mse': mean_squared_error(y_train, y_train_pred),
@@ -89,12 +71,12 @@ def train_linear_regression_model(features_df: pd.DataFrame, config: dict):
         'n_test': len(y_test),
         'n_features': X_train.shape[1]
     }
-    
+
     logger.info(f"Model trained successfully")
     logger.info(f"Train R²: {metrics['train_r2']:.4f}, Test R²: {metrics['test_r2']:.4f}")
     logger.info(f"Test MSE: {metrics['test_mse']:.6f}")
-    
-    return model, scaler, feature_columns, metrics
+
+    return model, None, feature_columns, metrics
 
 if __name__ == "__main__":
     # Test the model

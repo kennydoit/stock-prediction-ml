@@ -104,6 +104,54 @@ class EnhancedTechnicalIndicators:
             for period in periods:
                 features[f'sma_{period}'] = close.rolling(window=period).mean()
         
+        # Donchian Channels
+        if technical_config.get('donchian', {}).get('enabled', False):
+            window = technical_config['donchian'].get('window', 20)
+            donchian_high, donchian_low, donchian_mid = self.calculate_donchian(high, low, window)
+            features[f'donchian_high_{window}'] = donchian_high
+            features[f'donchian_low_{window}'] = donchian_low
+            features[f'donchian_mid_{window}'] = donchian_mid
+        
+        # ADX
+        if technical_config.get('adx', {}).get('enabled', False):
+            period = technical_config['adx'].get('period', 14)
+            adx, plus_di, minus_di = self.calculate_adx(high, low, close, period)
+            features[f'adx_{period}'] = adx
+            features[f'plus_di_{period}'] = plus_di
+            features[f'minus_di_{period}'] = minus_di
+        
+        # Parabolic SAR
+        if technical_config.get('parabolic_sar', {}).get('enabled', False):
+            step = technical_config['parabolic_sar'].get('step', 0.02)
+            max_step = technical_config['parabolic_sar'].get('max_step', 0.2)
+            sar = self.calculate_parabolic_sar(high, low, step, max_step)
+            features['parabolic_sar'] = sar
+        
+        # Composite/Crossover features
+        # MA crossovers
+        if technical_config.get('sma', {}).get('enabled', False):
+            periods = technical_config['sma'].get('periods', [5, 10, 20, 50])
+            for i in range(len(periods)-1):
+                short = periods[i]
+                long = periods[i+1]
+                short_sma = close.rolling(window=short).mean()
+                long_sma = close.rolling(window=long).mean()
+                features[f'sma_{short}_above_{long}'] = (short_sma > long_sma).astype(int)
+        
+        # MACD crossovers
+        if technical_config.get('macd', {}).get('enabled', False):
+            fast = technical_config['macd'].get('fast_period', 12)
+            slow = technical_config['macd'].get('slow_period', 26)
+            signal = technical_config['macd'].get('signal_period', 9)
+            macd, macd_signal = self.calculate_macd(close, fast, slow, signal)
+            features['macd_cross_signal'] = (macd > macd_signal).astype(int)
+        
+        # Price above/below indicators
+        if technical_config.get('sma', {}).get('enabled', False):
+            for period in technical_config['sma'].get('periods', [5, 10, 20, 50]):
+                sma = close.rolling(window=period).mean()
+                features[f'price_above_sma_{period}'] = (close > sma).astype(int)
+        
         # Add basic features (always included)
         features['returns_1d'] = close.pct_change(1)
         features['returns_5d'] = close.pct_change(5)
@@ -329,6 +377,60 @@ class EnhancedTechnicalIndicators:
         senkou_b = ((high.rolling(base_period * 2).max() + low.rolling(base_period * 2).min()) / 2).shift(base_period)
         
         return tenkan, kijun, senkou_a, senkou_b
+    
+    def calculate_donchian(self, high: pd.Series, low: pd.Series, window: int = 20):
+        upper = high.rolling(window=window).max()
+        lower = low.rolling(window=window).min()
+        middle = (upper + lower) / 2
+        return upper, lower, middle
+
+    def calculate_adx(self, high: pd.Series, low: pd.Series, close: pd.Series, period: int = 14):
+        plus_dm = high.diff()
+        minus_dm = low.diff().abs()
+        plus_dm[plus_dm < 0] = 0
+        minus_dm[minus_dm < 0] = 0
+        tr1 = high - low
+        tr2 = (high - close.shift()).abs()
+        tr3 = (low - close.shift()).abs()
+        tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+        atr = tr.rolling(window=period).mean()
+        plus_di = 100 * (plus_dm.rolling(window=period).sum() / atr)
+        minus_di = 100 * (minus_dm.rolling(window=period).sum() / atr)
+        dx = (abs(plus_di - minus_di) / (plus_di + minus_di)) * 100
+        adx = dx.rolling(window=period).mean()
+        return adx, plus_di, minus_di
+
+    def calculate_parabolic_sar(self, high: pd.Series, low: pd.Series, step: float = 0.02, max_step: float = 0.2):
+        sar = low.copy()
+        bull = True
+        af = step
+        ep = high.iloc[0]
+        sar.iloc[0] = low.iloc[0]
+        for i in range(1, len(high)):
+            prev_sar = sar.iloc[i-1]
+            if bull:
+                sar.iloc[i] = prev_sar + af * (ep - prev_sar)
+                if low.iloc[i] < sar.iloc[i]:
+                    bull = False
+                    sar.iloc[i] = ep
+                    af = step
+                    ep = low.iloc[i]
+            else:
+                sar.iloc[i] = prev_sar + af * (ep - prev_sar)
+                if high.iloc[i] > sar.iloc[i]:
+                    bull = True
+                    sar.iloc[i] = ep
+                    af = step
+                    ep = high.iloc[i]
+            if bull:
+                if high.iloc[i] > ep:
+                    ep = high.iloc[i]
+                    af = min(af + step, max_step)
+            else:
+                if low.iloc[i] < ep:
+                    ep = low.iloc[i]
+                    af = min(af + step, max_step)
+        return sar
 
 def calculate_enhanced_features(symbol: str, config: dict, include_peers: bool = False) -> pd.DataFrame:
     """Main function to calculate enhanced features with peer option"""

@@ -1,0 +1,6067 @@
+valid_symbols:
+- symbol: A
+  market_cap: 32894726144
+  avg_volume: 1880816.533864542
+  current_price: 115.80000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AAPL
+  market_cap: 3045708267520
+  avg_volume: 56919907.56972112
+  current_price: 203.9199981689453
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Consumer Electronics
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ABBV
+  market_cap: 335315730432
+  avg_volume: 5777532.470119522
+  current_price: 189.8300018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ABNB
+  market_cap: 86804832256
+  avg_volume: 5158726.09561753
+  current_price: 140.63999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ABT
+  market_cap: 232407826432
+  avg_volume: 5777774.7011952195
+  current_price: 133.5800018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ACGL
+  market_cap: 35800346624
+  avg_volume: 1758958.1673306774
+  current_price: 95.52999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Diversified
+  country: Bermuda
+  exchange: NMS
+  currency: USD
+- symbol: ACN
+  market_cap: 198857146368
+  avg_volume: 2626231.274900398
+  current_price: 317.6499938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: ADBE
+  market_cap: 177691312128
+  avg_volume: 3323007.768924303
+  current_price: 416.9200134277344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ADI
+  market_cap: 110296080384
+  avg_volume: 3442138.4462151392
+  current_price: 222.25999450683594
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ADM
+  market_cap: 22782937088
+  avg_volume: 3766161.354581673
+  current_price: 47.41999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Farm Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ADP
+  market_cap: 132659699712
+  avg_volume: 1675081.673306773
+  current_price: 326.80999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ADSK
+  market_cap: 63725654016
+  avg_volume: 1537127.888446215
+  current_price: 297.8599853515625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AEE
+  market_cap: 26037596160
+  avg_volume: 1634212.749003984
+  current_price: 96.04000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AEP
+  market_cap: 54375710720
+  avg_volume: 3318534.661354582
+  current_price: 101.79000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AES
+  market_cap: 7752841728
+  avg_volume: 10084533.864541832
+  current_price: 10.890000343322754
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AFL
+  market_cap: 56054071296
+  avg_volume: 2187633.864541833
+  current_price: 103.68000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Life
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AIG
+  market_cap: 50336657408
+  avg_volume: 3994123.90438247
+  current_price: 87.33999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AIZ
+  market_cap: 10316396544
+  avg_volume: 396718.7250996016
+  current_price: 203.47000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AJG
+  market_cap: 84179984384
+  avg_volume: 1082215.139442231
+  current_price: 328.760009765625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AKAM
+  market_cap: 10964142080
+  avg_volume: 1817437.250996016
+  current_price: 77.02999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ALB
+  market_cap: 7039657984
+  avg_volume: 2767831.474103586
+  current_price: 59.83000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ALGN
+  market_cap: 13092204544
+  avg_volume: 883684.6613545817
+  current_price: 180.6199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ALL
+  market_cap: 55098032128
+  avg_volume: 1634504.1832669324
+  current_price: 208.05999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ALLE
+  market_cap: 11973758976
+  avg_volume: 805747.2111553785
+  current_price: 139.14999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Security & Protection Services
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: AMAT
+  market_cap: 133808521216
+  avg_volume: 6320412.749003984
+  current_price: 166.74000549316406
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductor Equipment & Materials
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AMCR
+  market_cap: 20874106880
+  avg_volume: 13657916.135458168
+  current_price: 9.109999656677246
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: Switzerland
+  exchange: NYQ
+  currency: USD
+- symbol: AMD
+  market_cap: 188390473728
+  avg_volume: 52447229.880478084
+  current_price: 116.19000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AME
+  market_cap: 41177272320
+  avg_volume: 1136086.2549800796
+  current_price: 178.35000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AMGN
+  market_cap: 156112175104
+  avg_volume: 2724330.478087649
+  current_price: 290.3299865722656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AMP
+  market_cap: 49385353216
+  avg_volume: 484968.7250996016
+  current_price: 518.6300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AMT
+  market_cap: 99498041344
+  avg_volume: 2402495.6175298803
+  current_price: 212.5399932861328
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AMZN
+  market_cap: 2267344535552
+  avg_volume: 45356905.37848605
+  current_price: 213.57000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Internet Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ANET
+  market_cap: 122138222592
+  avg_volume: 9462863.545816733
+  current_price: 97.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ANSS
+  market_cap: 29827293184
+  avg_volume: 550340.6374501992
+  current_price: 339.2699890136719
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AON
+  market_cap: 80133177344
+  avg_volume: 1100425.0996015936
+  current_price: 371.0899963378906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: AOS
+  market_cap: 9143291904
+  avg_volume: 1094585.059760956
+  current_price: 64.33999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: APA
+  market_cap: 6675632128
+  avg_volume: 6107312.749003984
+  current_price: 18.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: APD
+  market_cap: 62263361536
+  avg_volume: 1355921.7131474104
+  current_price: 279.7799987792969
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: APH
+  market_cap: 112928260096
+  avg_volume: 6466754.38247012
+  current_price: 93.36000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Electronic Components
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: APO
+  market_cap: 76265873408
+  avg_volume: 3145856.374501992
+  current_price: 133.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: APTV
+  market_cap: 14509527040
+  avg_volume: 2915623.306772908
+  current_price: 66.63999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Parts
+  country: Switzerland
+  exchange: NYQ
+  currency: USD
+- symbol: ARE
+  market_cap: 12200912896
+  avg_volume: 1181023.90438247
+  current_price: 70.52999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Office
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ATO
+  market_cap: 24171812864
+  avg_volume: 923570.1195219123
+  current_price: 152.17999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Gas
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AVB
+  market_cap: 28922058752
+  avg_volume: 729800.0
+  current_price: 203.14999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AVGO
+  market_cap: 1161052422144
+  avg_volume: 29469384.86055777
+  current_price: 246.92999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AVY
+  market_cap: 14061445120
+  avg_volume: 539812.5248508946
+  current_price: 179.8699951171875
+  data_points: 503
+  data_start: '2023-06-06'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AWK
+  market_cap: 27311431680
+  avg_volume: 1223945.6175298805
+  current_price: 140.0500030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Water
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AXON
+  market_cap: 61646155776
+  avg_volume: 624292.2310756972
+  current_price: 791.8499755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: AXP
+  market_cap: 211907149824
+  avg_volume: 2914104.581673307
+  current_price: 302.4700012207031
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: AZO
+  market_cap: 62200569856
+  avg_volume: 140286.65338645419
+  current_price: 3719.239990234375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Parts
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BA
+  market_cap: 158944477184
+  avg_volume: 8107104.780876494
+  current_price: 210.8000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BAC
+  market_cap: 338708660224
+  avg_volume: 40849269.52191235
+  current_price: 44.970001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BALL
+  market_cap: 14905668608
+  avg_volume: 2072645.219123506
+  current_price: 53.72999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BAX
+  market_cap: 15528676352
+  avg_volume: 4412473.505976096
+  current_price: 30.260000228881836
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BBY
+  market_cap: 15457310720
+  avg_volume: 3034547.011952191
+  current_price: 73.0199966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Specialty Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BDX
+  market_cap: 49711984640
+  avg_volume: 1670596.2151394421
+  current_price: 173.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BEN
+  market_cap: 11493144576
+  avg_volume: 3920613.147410359
+  current_price: 21.8700008392334
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BG
+  market_cap: 10019892224
+  avg_volume: 1507545.219123506
+  current_price: 74.55000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Farm Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BIIB
+  market_cap: 19507273728
+  avg_volume: 1263967.330677291
+  current_price: 133.1300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: BK
+  market_cap: 64617996288
+  avg_volume: 4114495.6175298803
+  current_price: 90.31999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BKNG
+  market_cap: 182701096960
+  avg_volume: 258434.66135458168
+  current_price: 5614.60986328125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: BKR
+  market_cap: 37549428736
+  avg_volume: 7233736.4541832665
+  current_price: 37.900001525878906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Equipment & Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: BLDR
+  market_cap: 12336789504
+  avg_volume: 1689023.5059760956
+  current_price: 111.62999725341797
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BLK
+  market_cap: 153229557760
+  avg_volume: 651675.8964143427
+  current_price: 989.0499877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BMY
+  market_cap: 98518220800
+  avg_volume: 13294373.705179283
+  current_price: 48.40999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BR
+  market_cap: 28819548160
+  avg_volume: 517890.8366533865
+  current_price: 245.35000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BRO
+  market_cap: 31692457984
+  avg_volume: 1369589.4422310756
+  current_price: 110.56999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BSX
+  market_cap: 151037050880
+  avg_volume: 6704921.71314741
+  current_price: 102.08999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BX
+  market_cap: 170398138368
+  avg_volume: 4034263.346613546
+  current_price: 140.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: BXP
+  market_cap: 13100191744
+  avg_volume: 1401094.6215139441
+  current_price: 74.12000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Office
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: C
+  market_cap: 146168561664
+  avg_volume: 15472272.50996016
+  current_price: 78.26000213623047
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CAG
+  market_cap: 10688134144
+  avg_volume: 4921013.944223108
+  current_price: 22.389999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CAH
+  market_cap: 36925718528
+  avg_volume: 2210739.043824701
+  current_price: 154.7100067138672
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Distribution
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CARR
+  market_cap: 60903305216
+  avg_volume: 4676888.247011952
+  current_price: 71.04000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CAT
+  market_cap: 166185811968
+  avg_volume: 2666852.988047809
+  current_price: 353.3500061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Farm & Heavy Construction Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CB
+  market_cap: 117747777536
+  avg_volume: 1702002.5896414344
+  current_price: 293.82000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: Switzerland
+  exchange: NYQ
+  currency: USD
+- symbol: CBOE
+  market_cap: 23309115392
+  avg_volume: 817117.529880478
+  current_price: 222.60000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: BTS
+  currency: USD
+- symbol: CBRE
+  market_cap: 38327361536
+  avg_volume: 1746005.7768924304
+  current_price: 128.57000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: Real Estate Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CCI
+  market_cap: 43088666624
+  avg_volume: 3048413.545816733
+  current_price: 98.94999694824219
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CCL
+  market_cap: 32896002048
+  avg_volume: 29048229.282868527
+  current_price: 24.280000686645508
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CDNS
+  market_cap: 81079820288
+  avg_volume: 1773823.705179283
+  current_price: 296.95001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CDW
+  market_cap: 23471536128
+  avg_volume: 982979.4820717132
+  current_price: 178.24000549316406
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CEG
+  market_cap: 93648994304
+  avg_volume: 2935942.828685259
+  current_price: 298.79998779296875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Renewable
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CF
+  market_cap: 14927601664
+  avg_volume: 2215408.3665338648
+  current_price: 92.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Agricultural Inputs
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CFG
+  market_cap: 17940058112
+  avg_volume: 5221490.039840638
+  current_price: 41.369998931884766
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CHD
+  market_cap: 24398661632
+  avg_volume: 1536235.657370518
+  current_price: 99.06999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CHRW
+  market_cap: 11374430208
+  avg_volume: 1333116.3346613545
+  current_price: 95.80000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Integrated Freight & Logistics
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CHTR
+  market_cap: 54763225088
+  avg_volume: 1278869.721115538
+  current_price: 396.45001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Telecom Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CI
+  market_cap: 83396706304
+  avg_volume: 1665440.755467197
+  current_price: 312.17999267578125
+  data_points: 503
+  data_start: '2023-06-06'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CINF
+  market_cap: 23606593536
+  avg_volume: 696395.8167330677
+  current_price: 151.02999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CL
+  market_cap: 73132294144
+  avg_volume: 4589932.470119522
+  current_price: 90.23999786376953
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CLX
+  market_cap: 15738175488
+  avg_volume: 1347148.6055776891
+  current_price: 127.69000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CMCSA
+  market_cap: 129559396352
+  avg_volume: 20541492.62948207
+  current_price: 34.70000076293945
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Telecom Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CME
+  market_cap: 98824847360
+  avg_volume: 1915950.0
+  current_price: 274.239990234375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CMG
+  market_cap: 70736396288
+  avg_volume: 12835044.621513944
+  current_price: 52.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CMI
+  market_cap: 44986654720
+  avg_volume: 1118609.1633466135
+  current_price: 326.57000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CMS
+  market_cap: 20938680320
+  avg_volume: 2326860.15936255
+  current_price: 70.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CNC
+  market_cap: 27447781376
+  avg_volume: 4075787.848605578
+  current_price: 55.15999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CNP
+  market_cap: 23896373248
+  avg_volume: 4980437.250996016
+  current_price: 36.61000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: COF
+  market_cap: 126836940800
+  avg_volume: 2982208.565737052
+  current_price: 198.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: COIN
+  market_cap: 63999725568
+  avg_volume: 11093517.131474104
+  current_price: 251.27000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: COO
+  market_cap: 14430775296
+  avg_volume: 1352325.6972111554
+  current_price: 72.33000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: COP
+  market_cap: 110107402240
+  avg_volume: 6379502.589641434
+  current_price: 87.22000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: COR
+  market_cap: 56003219456
+  avg_volume: 1478175.0996015936
+  current_price: 288.94000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Distribution
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: COST
+  market_cap: 450102525952
+  avg_volume: 1974036.454183267
+  current_price: 1014.9400024414062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Discount Stores
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CPAY
+  market_cap: 23788701696
+  avg_volume: 470584.66135458165
+  current_price: 337.4599914550781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CPB
+  market_cap: 10279521280
+  avg_volume: 2840116.135458167
+  current_price: 34.47999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CPRT
+  market_cap: 48472502272
+  avg_volume: 4471920.517928286
+  current_price: 50.130001068115234
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Business Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CPT
+  market_cap: 12375046144
+  avg_volume: 931752.1912350598
+  current_price: 115.83000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CRL
+  market_cap: 7107041792
+  avg_volume: 755873.7051792828
+  current_price: 144.6999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CRM
+  market_cap: 262431571968
+  avg_volume: 6269650.398406374
+  current_price: 274.510009765625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CRWD
+  market_cap: 116750254080
+  avg_volume: 4251842.8286852585
+  current_price: 468.4100036621094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CSCO
+  market_cap: 261597593600
+  avg_volume: 19538916.932270918
+  current_price: 66.05999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Communication Equipment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CSGP
+  market_cap: 33126565888
+  avg_volume: 2589240.637450199
+  current_price: 78.5199966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: Real Estate Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CSX
+  market_cap: 60545667072
+  avg_volume: 12797283.864541832
+  current_price: 32.22999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Railroads
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CTAS
+  market_cap: 91926151168
+  avg_volume: 1597443.8247011951
+  current_price: 227.66000366210938
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Business Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CTRA
+  market_cap: 19524216832
+  avg_volume: 6433561.9521912355
+  current_price: 25.579999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CTSH
+  market_cap: 39573385216
+  avg_volume: 3666052.7888446217
+  current_price: 80.27999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: CTVA
+  market_cap: 48870658048
+  avg_volume: 3572914.940239044
+  current_price: 71.63999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Agricultural Inputs
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CVS
+  market_cap: 80429973504
+  avg_volume: 10569761.55378486
+  current_price: 63.58000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CVX
+  market_cap: 242875990016
+  avg_volume: 8351295.219123506
+  current_price: 140.2100067138672
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Integrated
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: CZR
+  market_cap: 5351016448
+  avg_volume: 4054542.629482072
+  current_price: 25.729999542236328
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Resorts & Casinos
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: D
+  market_cap: 47560155136
+  avg_volume: 4858257.96812749
+  current_price: 55.77000045776367
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DAL
+  market_cap: 33267957760
+  avg_volume: 9768341.035856573
+  current_price: 50.95000076293945
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Airlines
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DASH
+  market_cap: 92566872064
+  avg_volume: 4023059.760956175
+  current_price: 218.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Internet Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: DAY
+  market_cap: 9660009472
+  avg_volume: 1580989.4422310756
+  current_price: 60.41999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DD
+  market_cap: 28512335872
+  avg_volume: 2658708.565737052
+  current_price: 68.12999725341797
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DE
+  market_cap: 140827328512
+  avg_volume: 1463032.2709163346
+  current_price: 519.989990234375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Farm & Heavy Construction Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DECK
+  market_cap: 16321399808
+  avg_volume: 2456137.051792829
+  current_price: 109.22000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Footwear & Accessories
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DELL
+  market_cap: 77745627136
+  avg_volume: 8012332.868525896
+  current_price: 113.75
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DG
+  market_cap: 24973658112
+  avg_volume: 3558384.860557769
+  current_price: 113.4800033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Discount Stores
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DGX
+  market_cap: 19462445056
+  avg_volume: 959995.8167330677
+  current_price: 174.33999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DHI
+  market_cap: 37089034240
+  avg_volume: 2843672.509960159
+  current_price: 120.73999786376953
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Residential Construction
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DHR
+  market_cap: 140285640704
+  avg_volume: 3208274.794820717
+  current_price: 196.02000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DIS
+  market_cap: 204763725824
+  avg_volume: 11586613.944223108
+  current_price: 113.9000015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DLR
+  market_cap: 60681052160
+  avg_volume: 2075967.9282868525
+  current_price: 176.83999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DLTR
+  market_cap: 19721771008
+  avg_volume: 3329409.1633466138
+  current_price: 94.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Discount Stores
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: DOC
+  market_cap: 11991074816
+  avg_volume: 5354407.569721116
+  current_price: 17.260000228881836
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Healthcare Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DOV
+  market_cap: 24603312128
+  avg_volume: 930049.203187251
+  current_price: 179.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DOW
+  market_cap: 20180910080
+  avg_volume: 5592561.9521912355
+  current_price: 28.549999237060547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DPZ
+  market_cap: 16032211968
+  avg_volume: 610160.7569721115
+  current_price: 468.2099914550781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: DRI
+  market_cap: 25456666624
+  avg_volume: 1229186.2549800796
+  current_price: 217.52999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DTE
+  market_cap: 27776018432
+  avg_volume: 1262428.2868525896
+  current_price: 133.85000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DUK
+  market_cap: 89563332608
+  avg_volume: 3288186.055776892
+  current_price: 115.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DVA
+  market_cap: 10422068224
+  avg_volume: 871406.1752988048
+  current_price: 137.89999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Care Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DVN
+  market_cap: 20733409280
+  avg_volume: 8448282.071713148
+  current_price: 32.290000915527344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: DXCM
+  market_cap: 33983913984
+  avg_volume: 3935679.083665339
+  current_price: 86.66999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EA
+  market_cap: 37507072000
+  avg_volume: 2416269.322709163
+  current_price: 149.57000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Electronic Gaming & Multimedia
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EBAY
+  market_cap: 36226949120
+  avg_volume: 5477779.6812749
+  current_price: 78.61000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Internet Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ECL
+  market_cap: 75714977792
+  avg_volume: 1134042.4302788845
+  current_price: 267.05999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ED
+  market_cap: 36609675264
+  avg_volume: 2121454.3824701197
+  current_price: 101.61000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EFX
+  market_cap: 33323833344
+  avg_volume: 921800.3984063745
+  current_price: 268.30999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Consulting Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EG
+  market_cap: 14724662272
+  avg_volume: 365032.8685258964
+  current_price: 346.17999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Reinsurance
+  country: Bermuda
+  exchange: NYQ
+  currency: USD
+- symbol: EIX
+  market_cap: 20684912640
+  avg_volume: 2515673.107569721
+  current_price: 53.7599983215332
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EL
+  market_cap: 24628621312
+  avg_volume: 3415214.541832669
+  current_price: 68.45999908447266
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ELV
+  market_cap: 88873787392
+  avg_volume: 1334859.9601593625
+  current_price: 393.3599853515625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EMN
+  market_cap: 9101712384
+  avg_volume: 1054526.09561753
+  current_price: 78.83000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EMR
+  market_cap: 69474369536
+  avg_volume: 2855627.888446215
+  current_price: 123.51000213623047
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ENPH
+  market_cap: 5403104256
+  avg_volume: 4413638.0478087645
+  current_price: 41.18000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Solar
+  country: United States
+  exchange: NGM
+  currency: USD
+- symbol: EOG
+  market_cap: 62247010304
+  avg_volume: 3239049.003984064
+  current_price: 114.05000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EPAM
+  market_cap: 10097210368
+  avg_volume: 618695.0199203187
+  current_price: 178.22999572753906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EQIX
+  market_cap: 89448628224
+  avg_volume: 506076.8924302789
+  current_price: 914.4299926757812
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EQR
+  market_cap: 26825148416
+  avg_volume: 1843039.641434263
+  current_price: 68.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EQT
+  market_cap: 33756518400
+  avg_volume: 6889893.027888446
+  current_price: 56.38999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ERIE
+  market_cap: 19435632640
+  avg_volume: 144172.70916334662
+  current_price: 371.69000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ES
+  market_cap: 24060043264
+  avg_volume: 2512390.637450199
+  current_price: 65.48999786376953
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ESS
+  market_cap: 19271053312
+  avg_volume: 408445.01992031874
+  current_price: 279.0899963378906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ETN
+  market_cap: 129696391168
+  avg_volume: 2326492.03187251
+  current_price: 331.45001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: ETR
+  market_cap: 36666421248
+  avg_volume: 3378404.780876494
+  current_price: 82.1500015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EVRG
+  market_cap: 15011136512
+  avg_volume: 2090447.0119521911
+  current_price: 65.23999786376953
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EW
+  market_cap: 45473230848
+  avg_volume: 4454590.6374502
+  current_price: 77.5199966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EXC
+  market_cap: 43026591744
+  avg_volume: 6905817.529880478
+  current_price: 42.619998931884766
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EXE
+  market_cap: 27926837248
+  avg_volume: 2363808.964143426
+  current_price: 117.3499984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EXPD
+  market_cap: 15387476992
+  avg_volume: 1237685.4581673306
+  current_price: 112.36000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Integrated Freight & Logistics
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: EXPE
+  market_cap: 22443212800
+  avg_volume: 2221461.155378486
+  current_price: 176.5500030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: EXR
+  market_cap: 33197082624
+  avg_volume: 1233138.4462151395
+  current_price: 149.8300018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Industrial
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: F
+  market_cap: 40799404032
+  avg_volume: 65715926.494023904
+  current_price: 10.260000228881836
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Manufacturers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FANG
+  market_cap: 41067134976
+  avg_volume: 1993563.545816733
+  current_price: 140.55999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FAST
+  market_cap: 48252911616
+  avg_volume: 6539295.219123506
+  current_price: 42.060001373291016
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Industrial Distribution
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FCX
+  market_cap: 59573571584
+  avg_volume: 12935465.33864542
+  current_price: 41.47999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Copper
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FDS
+  market_cap: 16406428672
+  avg_volume: 279488.04780876497
+  current_price: 432.3500061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FDX
+  market_cap: 52618338304
+  avg_volume: 1918163.7450199204
+  current_price: 219.61000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Integrated Freight & Logistics
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FE
+  market_cap: 23461390336
+  avg_volume: 3508455.577689243
+  current_price: 40.650001525878906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FFIV
+  market_cap: 16967017472
+  avg_volume: 532417.1314741035
+  current_price: 295.42999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FI
+  market_cap: 92429697024
+  avg_volume: 2914653.386454183
+  current_price: 166.7100067138672
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FICO
+  market_cap: 43208949760
+  avg_volume: 186697.609561753
+  current_price: 1775.0999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FIS
+  market_cap: 42677837824
+  avg_volume: 4115235.657370518
+  current_price: 81.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FITB
+  market_cap: 26305857536
+  avg_volume: 4830325.498007968
+  current_price: 39.40999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FOX
+  market_cap: 23366797312
+  avg_volume: 1184405.3784860559
+  current_price: 49.790000915527344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FOXA
+  market_cap: 23366756352
+  avg_volume: 3582862.151394422
+  current_price: 54.369998931884766
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FRT
+  market_cap: 8375803392
+  avg_volume: 654408.1673306773
+  current_price: 96.41999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: FSLR
+  market_cap: 17840039936
+  avg_volume: 2656748.207171315
+  current_price: 166.35000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Solar
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FTNT
+  market_cap: 80322756608
+  avg_volume: 5608162.749003984
+  current_price: 104.94000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: FTV
+  market_cap: 24821581824
+  avg_volume: 2200357.171314741
+  current_price: 73.02999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Scientific & Technical Instruments
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GD
+  market_cap: 74206126080
+  avg_volume: 1234000.9960159364
+  current_price: 276.4800109863281
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GDDY
+  market_cap: 26068178944
+  avg_volume: 1510767.9282868525
+  current_price: 182.9499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GE
+  market_cap: 272601284608
+  avg_volume: 5945695.711155378
+  current_price: 255.6300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GEHC
+  market_cap: 32793724928
+  avg_volume: 3259402.19123506
+  current_price: 71.62000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Health Information Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: GEN
+  market_cap: 18191345664
+  avg_volume: 3992043.426294821
+  current_price: 29.329999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: GEV
+  market_cap: 132373479424
+  avg_volume: 3583908.389261745
+  current_price: 485.0
+  data_points: 298
+  data_start: '2024-04-01'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GILD
+  market_cap: 139892359168
+  avg_volume: 7104046.613545816
+  current_price: 112.45999908447266
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: GIS
+  market_cap: 29992108032
+  avg_volume: 4349937.848605578
+  current_price: 54.77000045776367
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GL
+  market_cap: 10045469696
+  avg_volume: 1006993.2270916335
+  current_price: 121.69999694824219
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Life
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GLW
+  market_cap: 43431641088
+  avg_volume: 5186817.928286852
+  current_price: 50.709999084472656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Electronic Components
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GM
+  market_cap: 45639319552
+  avg_volume: 14636718.525896415
+  current_price: 47.470001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Manufacturers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GNRC
+  market_cap: 7560081408
+  avg_volume: 1033970.1195219123
+  current_price: 127.95999908447266
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GOOG
+  market_cap: 2114328068096
+  avg_volume: 21240291.23505976
+  current_price: 174.9199981689453
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Internet Content & Information
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: GOOGL
+  market_cap: 2114328199168
+  avg_volume: 29687807.768924303
+  current_price: 173.67999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Internet Content & Information
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: GPC
+  market_cap: 17386223616
+  avg_volume: 1132321.9123505976
+  current_price: 125.2699966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Parts
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GPN
+  market_cap: 18747056128
+  avg_volume: 2292754.581673307
+  current_price: 76.87000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Business Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GRMN
+  market_cap: 39942627328
+  avg_volume: 848701.1952191235
+  current_price: 207.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Scientific & Technical Instruments
+  country: Switzerland
+  exchange: NYQ
+  currency: USD
+- symbol: GS
+  market_cap: 188400369664
+  avg_volume: 2295024.302788845
+  current_price: 614.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Capital Markets
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: GWW
+  market_cap: 52572659712
+  avg_volume: 251371.31474103587
+  current_price: 1094.3699951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Industrial Distribution
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HAL
+  market_cap: 17641353216
+  avg_volume: 8985222.465208748
+  current_price: 20.520000457763672
+  data_points: 503
+  data_start: '2023-06-06'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Equipment & Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HAS
+  market_cap: 9293355008
+  avg_volume: 1725521.7131474104
+  current_price: 66.31999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Leisure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HBAN
+  market_cap: 23629457408
+  avg_volume: 16703775.29880478
+  current_price: 16.219999313354492
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HCA
+  market_cap: 92462211072
+  avg_volume: 1327717.7290836654
+  current_price: 384.3399963378906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Care Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HD
+  market_cap: 365466877952
+  avg_volume: 3393303.386454183
+  current_price: 367.3299865722656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Home Improvement Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HES
+  market_cap: 42101063680
+  avg_volume: 2212717.330677291
+  current_price: 136.1300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HIG
+  market_cap: 36743041024
+  avg_volume: 1589081.87250996
+  current_price: 129.3300018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HII
+  market_cap: 8887264256
+  avg_volume: 412340.6374501992
+  current_price: 226.49000549316406
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HLT
+  market_cap: 60092936192
+  avg_volume: 1689004.1832669324
+  current_price: 252.80999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Lodging
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HOLX
+  market_cap: 14335619072
+  avg_volume: 2010664.143426295
+  current_price: 64.33000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HON
+  market_cap: 147164348416
+  avg_volume: 3318693.824701195
+  current_price: 228.77999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Conglomerates
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HPE
+  market_cap: 23764305920
+  avg_volume: 14919713.74501992
+  current_price: 18.110000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Communication Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HPQ
+  market_cap: 23650895872
+  avg_volume: 7934413.147410358
+  current_price: 25.18000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HRL
+  market_cap: 16859780096
+  avg_volume: 2703015.537848606
+  current_price: 30.65999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HSIC
+  market_cap: 8796602368
+  avg_volume: 1355478.486055777
+  current_price: 70.37000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Distribution
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HST
+  market_cap: 11081044992
+  avg_volume: 7514493.625498008
+  current_price: 15.760000228881836
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Hotel & Motel
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: HSY
+  market_cap: 32771196928
+  avg_volume: 1692113.9442231075
+  current_price: 161.75
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Confectioners
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HUBB
+  market_cap: 21097121792
+  avg_volume: 515068.2729083665
+  current_price: 395.2799987792969
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Electrical Equipment & Parts
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HUM
+  market_cap: 27843874816
+  avg_volume: 1691437.450199203
+  current_price: 230.6999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: HWM
+  market_cap: 70792306688
+  avg_volume: 2756755.1792828687
+  current_price: 175.3699951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IBM
+  market_cap: 249886965760
+  avg_volume: 4298074.501992032
+  current_price: 268.8699951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ICE
+  market_cap: 102495485952
+  avg_volume: 2716712.151394422
+  current_price: 178.67999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IDXX
+  market_cap: 42214260736
+  avg_volume: 561473.9043824701
+  current_price: 524.9099731445312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: IEX
+  market_cap: 13848080384
+  avg_volume: 525109.561752988
+  current_price: 183.30999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IFF
+  market_cap: 19670251520
+  avg_volume: 1815355.9760956175
+  current_price: 76.9000015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: INCY
+  market_cap: 13311808512
+  avg_volume: 2097354.3824701197
+  current_price: 68.7699966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Biotechnology
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: INTC
+  market_cap: 87501717504
+  avg_volume: 62488863.545816734
+  current_price: 20.059999465942383
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: INTU
+  market_cap: 215229939712
+  avg_volume: 1496849.203187251
+  current_price: 771.5800170898438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: INVH
+  market_cap: 20343775232
+  avg_volume: 3176264.741035857
+  current_price: 33.189998626708984
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IP
+  market_cap: 24996159488
+  avg_volume: 5045215.93625498
+  current_price: 47.349998474121094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IPG
+  market_cap: 8526089216
+  avg_volume: 4699908.565737052
+  current_price: 23.059999465942383
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Advertising Agencies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IQV
+  market_cap: 26351362048
+  avg_volume: 1330898.2071713146
+  current_price: 152.32000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IR
+  market_cap: 33535846400
+  avg_volume: 2573463.147410359
+  current_price: 83.12000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IRM
+  market_cap: 30156447744
+  avg_volume: 1647966.1354581674
+  current_price: 102.20999908447266
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ISRG
+  market_cap: 199667499008
+  avg_volume: 1661496.015936255
+  current_price: 557.0800170898438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: IT
+  market_cap: 32522360832
+  avg_volume: 455464.3426294821
+  current_price: 422.54998779296875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ITW
+  market_cap: 72625692672
+  avg_volume: 1062034.860557769
+  current_price: 247.55999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: IVZ
+  market_cap: 6440330752
+  avg_volume: 4519429.482071714
+  current_price: 14.390000343322754
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: J
+  market_cap: 15340316672
+  avg_volume: 838429.1035856573
+  current_price: 127.66999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Engineering & Construction
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: JBHT
+  market_cap: 13908075520
+  avg_volume: 891183.4661354582
+  current_price: 140.2100067138672
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Integrated Freight & Logistics
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: JBL
+  market_cap: 18959273984
+  avg_volume: 1495021.314741036
+  current_price: 176.6199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Electronic Components
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: JCI
+  market_cap: 68298694656
+  avg_volume: 4674869.9203187255
+  current_price: 103.79000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: JKHY
+  market_cap: 13240860672
+  avg_volume: 526903.984063745
+  current_price: 181.83999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: JNJ
+  market_cap: 373013020672
+  avg_volume: 9527598.804780876
+  current_price: 155.02999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: JNPR
+  market_cap: 12004350976
+  avg_volume: 3529635.059760956
+  current_price: 35.900001525878906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Communication Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: JPM
+  market_cap: 738487566336
+  avg_volume: 9400715.93625498
+  current_price: 265.7300109863281
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: K
+  market_cap: 28469813248
+  avg_volume: 2826618.402390438
+  current_price: 82.05999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KDP
+  market_cap: 44507885568
+  avg_volume: 9910828.486055776
+  current_price: 32.77000045776367
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Non-Alcoholic
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: KEY
+  market_cap: 17896699904
+  avg_volume: 14284003.585657371
+  current_price: 16.329999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KEYS
+  market_cap: 27873050624
+  avg_volume: 1214287.0517928286
+  current_price: 161.9499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Scientific & Technical Instruments
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KHC
+  market_cap: 31636023296
+  avg_volume: 8713720.717131475
+  current_price: 26.729999542236328
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: KIM
+  market_cap: 14199651328
+  avg_volume: 4732793.027888446
+  current_price: 20.989999771118164
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KKR
+  market_cap: 114170912768
+  avg_volume: 4245526.494023904
+  current_price: 123.4000015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KLAC
+  market_cap: 106850729984
+  avg_volume: 1017197.8087649402
+  current_price: 808.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductor Equipment & Materials
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: KMB
+  market_cap: 44314025984
+  avg_volume: 2047092.6294820716
+  current_price: 133.5500030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: KMI
+  market_cap: 62548746240
+  avg_volume: 13733592.231075697
+  current_price: 28.139999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Midstream
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KMX
+  market_cap: 10009932800
+  avg_volume: 2116294.8207171313
+  current_price: 65.70999908447266
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto & Truck Dealerships
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KO
+  market_cap: 307109658624
+  avg_volume: 14758657.768924303
+  current_price: 71.3499984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Non-Alcoholic
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KR
+  market_cap: 44046176256
+  avg_volume: 5317176.494023904
+  current_price: 66.1500015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Grocery Stores
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: KVUE
+  market_cap: 41719644160
+  avg_volume: 20138554.581673305
+  current_price: 21.729999542236328
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: L
+  market_cap: 18692388864
+  avg_volume: 749763.7450199203
+  current_price: 89.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LDOS
+  market_cap: 19068432384
+  avg_volume: 1035427.6892430279
+  current_price: 148.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Information Technology Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LEN
+  market_cap: 28496179200
+  avg_volume: 2406461.8187251
+  current_price: 108.52999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Residential Construction
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LH
+  market_cap: 21257289728
+  avg_volume: 704619.46812749
+  current_price: 253.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LHX
+  market_cap: 45665300480
+  avg_volume: 1118104.9800796814
+  current_price: 244.27000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LII
+  market_cap: 19600027648
+  avg_volume: 324629.08366533864
+  current_price: 552.3499755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LIN
+  market_cap: 222515937280
+  avg_volume: 1857698.0079681275
+  current_price: 472.7099914550781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United Kingdom
+  exchange: NMS
+  currency: USD
+- symbol: LKQ
+  market_cap: 10091004928
+  avg_volume: 1942099.0039840636
+  current_price: 39.09000015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Parts
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: LLY
+  market_cap: 691149012992
+  avg_volume: 3313396.215139442
+  current_price: 769.8800048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LMT
+  market_cap: 112858038272
+  avg_volume: 1217128.685258964
+  current_price: 481.69000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LNT
+  market_cap: 15535860736
+  avg_volume: 1692513.7450199204
+  current_price: 60.47999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: LOW
+  market_cap: 126249877504
+  avg_volume: 2576555.577689243
+  current_price: 225.27000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Home Improvement Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LRCX
+  market_cap: 110452006912
+  avg_volume: 11405581.075697212
+  current_price: 86.3499984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductor Equipment & Materials
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: LULU
+  market_cap: 31792873472
+  avg_volume: 2000162.9482071714
+  current_price: 265.2699890136719
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Apparel Retail
+  country: Canada
+  exchange: NMS
+  currency: USD
+- symbol: LUV
+  market_cap: 19079112704
+  avg_volume: 9262427.49003984
+  current_price: 33.47999954223633
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Airlines
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LVS
+  market_cap: 28420577280
+  avg_volume: 5470766.334661354
+  current_price: 40.220001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Resorts & Casinos
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LW
+  market_cap: 7857338880
+  avg_volume: 2285847.80876494
+  current_price: 55.68000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LYB
+  market_cap: 18171957248
+  avg_volume: 2310254.183266932
+  current_price: 56.540000915527344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: LYV
+  market_cap: 33409933312
+  avg_volume: 2227700.3984063747
+  current_price: 144.14999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MA
+  market_cap: 535877320704
+  avg_volume: 2531487.250996016
+  current_price: 590.1199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MAA
+  market_cap: 18004486144
+  avg_volume: 762233.0677290837
+  current_price: 149.88999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MAR
+  market_cap: 72754995200
+  avg_volume: 1620011.155378486
+  current_price: 265.6300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Lodging
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MAS
+  market_cap: 13329424384
+  avg_volume: 1819183.8645418326
+  current_price: 63.189998626708984
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MCD
+  market_cap: 219772534784
+  avg_volume: 3252286.454183267
+  current_price: 307.3599853515625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MCHP
+  market_cap: 35195785216
+  avg_volume: 6923405.378486056
+  current_price: 65.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MCK
+  market_cap: 89111248896
+  avg_volume: 837742.2310756972
+  current_price: 712.8900146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Distribution
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MCO
+  market_cap: 87980687360
+  avg_volume: 748200.0
+  current_price: 488.95001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MDLZ
+  market_cap: 85652340736
+  avg_volume: 7452978.28685259
+  current_price: 66.1500015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Confectioners
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MDT
+  market_cap: 112091963392
+  avg_volume: 6451080.278884462
+  current_price: 87.44000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: MET
+  market_cap: 53656846336
+  avg_volume: 3541267.928286853
+  current_price: 79.93000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Life
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: META
+  market_cap: 1754273284096
+  avg_volume: 16959083.665338647
+  current_price: 697.7100219726562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Internet Content & Information
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MGM
+  market_cap: 8670666752
+  avg_volume: 4570879.083665338
+  current_price: 31.860000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Resorts & Casinos
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MHK
+  market_cap: 6347507200
+  avg_volume: 747116.5338645418
+  current_price: 101.5199966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Furnishings, Fixtures & Appliances
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MKC
+  market_cap: 19904106496
+  avg_volume: 1930688.047808765
+  current_price: 74.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MKTX
+  market_cap: 8333627904
+  avg_volume: 459198.60557768925
+  current_price: 222.22000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Capital Markets
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MLM
+  market_cap: 33236547584
+  avg_volume: 440231.2749003984
+  current_price: 551.3200073242188
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Building Materials
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MMC
+  market_cap: 113332363264
+  avg_volume: 1754903.984063745
+  current_price: 230.00999450683594
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MMM
+  market_cap: 78305337344
+  avg_volume: 4405312.121513944
+  current_price: 145.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Conglomerates
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MNST
+  market_cap: 61840351232
+  avg_volume: 6126940.438247012
+  current_price: 63.40999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Non-Alcoholic
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MO
+  market_cap: 99786825728
+  avg_volume: 9110029.282868525
+  current_price: 59.2400016784668
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Tobacco
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MOH
+  market_cap: 16090896384
+  avg_volume: 550957.7689243028
+  current_price: 296.8800048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MOS
+  market_cap: 11039638528
+  avg_volume: 4475866.135458168
+  current_price: 34.79999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Agricultural Inputs
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MPC
+  market_cap: 49191108608
+  avg_volume: 2862729.282868526
+  current_price: 160.1199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Refining & Marketing
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MPWR
+  market_cap: 32897390592
+  avg_volume: 660079.0836653387
+  current_price: 687.0800170898438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MRK
+  market_cap: 198296043520
+  avg_volume: 10242408.366533864
+  current_price: 78.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MRNA
+  market_cap: 10619935744
+  avg_volume: 6230637.450199204
+  current_price: 27.459999084472656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Biotechnology
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MS
+  market_cap: 211481477120
+  avg_volume: 7280199.601593626
+  current_price: 131.82000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Capital Markets
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MSCI
+  market_cap: 43996532736
+  avg_volume: 496495.81673306774
+  current_price: 568.6400146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MSFT
+  market_cap: 3496118321152
+  avg_volume: 22589091.83266932
+  current_price: 470.3800048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MSI
+  market_cap: 69757534208
+  avg_volume: 750622.5099601593
+  current_price: 417.9200134277344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Communication Equipment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MTB
+  market_cap: 29557415936
+  avg_volume: 1100015.3386454184
+  current_price: 184.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MTCH
+  market_cap: 7807963648
+  avg_volume: 5092781.075697212
+  current_price: 31.84000015258789
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Internet Content & Information
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: MTD
+  market_cap: 24613900288
+  avg_volume: 152703.38645418326
+  current_price: 1184.3399658203125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: MU
+  market_cap: 121323405312
+  avg_volume: 19971272.310756974
+  current_price: 108.55999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NCLH
+  market_cap: 8739545088
+  avg_volume: 13227754.183266932
+  current_price: 19.559999465942383
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NDAQ
+  market_cap: 49150582784
+  avg_volume: 2962415.139442231
+  current_price: 85.61000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NDSN
+  market_cap: 12135851008
+  avg_volume: 266056.97211155377
+  current_price: 214.75999450683594
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NEE
+  market_cap: 148550746112
+  avg_volume: 11406956.57370518
+  current_price: 72.16000366210938
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NEM
+  market_cap: 58276675584
+  avg_volume: 10951582.071713148
+  current_price: 52.36000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Gold
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NFLX
+  market_cap: 528333635584
+  avg_volume: 4389281.87250996
+  current_price: 1241.469970703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NI
+  market_cap: 18489212928
+  avg_volume: 4380783.2669322705
+  current_price: 39.279998779296875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Gas
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NKE
+  market_cap: 92692168704
+  avg_volume: 11972161.952191235
+  current_price: 62.79999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Footwear & Accessories
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NOC
+  market_cap: 70439804928
+  avg_volume: 871690.0398406375
+  current_price: 489.4100036621094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NOW
+  market_cap: 213410054144
+  avg_volume: 1349894.8207171315
+  current_price: 1030.2099609375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NRG
+  market_cap: 30487830528
+  avg_volume: 3344329.880478088
+  current_price: 155.94000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Independent Power Producers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NSC
+  market_cap: 56534593536
+  avg_volume: 1239207.5697211155
+  current_price: 250.77000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Railroads
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NTAP
+  market_cap: 21927555072
+  avg_volume: 1955468.12749004
+  current_price: 106.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NTRS
+  market_cap: 20992704512
+  avg_volume: 1347004.780876494
+  current_price: 107.91000366210938
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NUE
+  market_cap: 28052400128
+  avg_volume: 1788980.6772908366
+  current_price: 121.56999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Steel
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: NVDA
+  market_cap: 3456210829312
+  avg_volume: 379995433.8645418
+  current_price: 141.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NWS
+  market_cap: 16494446592
+  avg_volume: 831038.2470119522
+  current_price: 31.850000381469727
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NWSA
+  market_cap: 16494444544
+  avg_volume: 2784138.645418327
+  current_price: 27.809999465942383
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: NXPI
+  market_cap: 52465987584
+  avg_volume: 2453804.3824701197
+  current_price: 207.67999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: Netherlands
+  exchange: NMS
+  currency: USD
+- symbol: O
+  market_cap: 50572480512
+  avg_volume: 5705828.087649402
+  current_price: 56.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ODFL
+  market_cap: 33881737216
+  avg_volume: 1582013.717693837
+  current_price: 160.3300018310547
+  data_points: 503
+  data_start: '2023-06-06'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Trucking
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: OKE
+  market_cap: 51044929536
+  avg_volume: 3442451.792828685
+  current_price: 81.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Midstream
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: OMC
+  market_cap: 13988422656
+  avg_volume: 1937125.0996015936
+  current_price: 71.43000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Advertising Agencies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: 'ON'
+  market_cap: 20965289984
+  avg_volume: 7351944.023904382
+  current_price: 50.16999816894531
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ORCL
+  market_cap: 487992098816
+  avg_volume: 9469187.051792828
+  current_price: 174.02000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ORLY
+  market_cap: 78515568640
+  avg_volume: 384648.20717131475
+  current_price: 1377.719970703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Parts
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: OTIS
+  market_cap: 37912670208
+  avg_volume: 2138385.059760956
+  current_price: 96.05999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: OXY
+  market_cap: 41865019392
+  avg_volume: 10119857.968127491
+  current_price: 42.540000915527344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PANW
+  market_cap: 133093285888
+  avg_volume: 7617467.33067729
+  current_price: 199.60000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PARA
+  market_cap: 8465369600
+  avg_volume: 12816876.693227092
+  current_price: 11.920000076293945
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PAYC
+  market_cap: 14884409344
+  avg_volume: 742384.06374502
+  current_price: 265.7099914550781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PAYX
+  market_cap: 57551319040
+  avg_volume: 1868844.2231075696
+  current_price: 159.77999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PCAR
+  market_cap: 49083666432
+  avg_volume: 2561379.282868526
+  current_price: 93.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Farm & Heavy Construction Machinery
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PCG
+  market_cap: 34371719168
+  avg_volume: 16655579.482071713
+  current_price: 15.640000343322754
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PEG
+  market_cap: 40019640320
+  avg_volume: 2772804.3824701197
+  current_price: 80.19999694824219
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PEP
+  market_cap: 178281529344
+  avg_volume: 5945018.924302788
+  current_price: 130.02999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Non-Alcoholic
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PFE
+  market_cap: 132753391616
+  avg_volume: 38480160.35856574
+  current_price: 23.350000381469727
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - General
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PFG
+  market_cap: 17255983104
+  avg_volume: 1219352.9880478089
+  current_price: 76.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PG
+  market_cap: 384551452672
+  avg_volume: 6837098.60557769
+  current_price: 164.02000427246094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Household & Personal Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PGR
+  market_cap: 163744088064
+  avg_volume: 2599226.892430279
+  current_price: 279.32000732421875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PH
+  market_cap: 85772263424
+  avg_volume: 683939.0438247012
+  current_price: 671.260009765625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PHM
+  market_cap: 20088799232
+  avg_volume: 2065969.3227091634
+  current_price: 100.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Residential Construction
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PKG
+  market_cap: 17672071168
+  avg_volume: 681357.96812749
+  current_price: 196.39999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PLD
+  market_cap: 100949073920
+  avg_volume: 3766596.215139442
+  current_price: 108.79000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Industrial
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PLTR
+  market_cap: 301407698944
+  avg_volume: 71006939.0438247
+  current_price: 127.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PM
+  market_cap: 282866352128
+  avg_volume: 5194367.131474104
+  current_price: 181.72999572753906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Tobacco
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PNC
+  market_cap: 70660136960
+  avg_volume: 2080313.346613546
+  current_price: 178.6300048828125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PNR
+  market_cap: 16378663936
+  avg_volume: 1437666.533864542
+  current_price: 99.55000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United Kingdom
+  exchange: NYQ
+  currency: USD
+- symbol: PNW
+  market_cap: 10637256704
+  avg_volume: 1069314.940239044
+  current_price: 89.08999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PODD
+  market_cap: 21940781056
+  avg_volume: 859428.486055777
+  current_price: 311.7699890136719
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: POOL
+  market_cap: 11168781312
+  avg_volume: 385129.88047808764
+  current_price: 297.0799865722656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Industrial Distribution
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PPG
+  market_cap: 25557385216
+  avg_volume: 1717599.4023904381
+  current_price: 112.5999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PPL
+  market_cap: 25164548096
+  avg_volume: 5156630.278884462
+  current_price: 34.040000915527344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PRU
+  market_cap: 37376061440
+  avg_volume: 1602942.231075697
+  current_price: 105.58000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Life
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PSA
+  market_cap: 53139808256
+  avg_volume: 777403.3864541833
+  current_price: 302.9100036621094
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Industrial
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PSX
+  market_cap: 46565974016
+  avg_volume: 2995911.5537848608
+  current_price: 114.29000091552734
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Refining & Marketing
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PTC
+  market_cap: 20431941632
+  avg_volume: 836978.8844621514
+  current_price: 170.33999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: PWR
+  market_cap: 53551714304
+  avg_volume: 1060270.3187250996
+  current_price: 361.3500061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Engineering & Construction
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: PYPL
+  market_cap: 71413096448
+  avg_volume: 13369789.243027888
+  current_price: 73.43000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: QCOM
+  market_cap: 163865526272
+  avg_volume: 8648843.625498008
+  current_price: 149.24000549316406
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: QQQ
+  market_cap: 208311549952
+  avg_volume: 42526249.003984064
+  current_price: 529.9199829101562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Unknown
+  industry: Unknown
+  country: Unknown
+  exchange: NGM
+  currency: USD
+- symbol: RCL
+  market_cap: 75042889728
+  avg_volume: 2608698.406374502
+  current_price: 276.3399963378906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Travel Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: REG
+  market_cap: 13150683136
+  avg_volume: 1069850.3984063745
+  current_price: 72.01000213623047
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: REGN
+  market_cap: 53250498560
+  avg_volume: 687850.3984063745
+  current_price: 493.2200012207031
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Biotechnology
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: RF
+  market_cap: 19821406208
+  avg_volume: 8247473.90438247
+  current_price: 22.049999237060547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: RJF
+  market_cap: 29607546880
+  avg_volume: 1132697.2111553785
+  current_price: 146.75
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: RL
+  market_cap: 16576979968
+  avg_volume: 860919.920318725
+  current_price: 274.79998779296875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Apparel Manufacturing
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: RMD
+  market_cap: 36979331072
+  avg_volume: 1082607.96812749
+  current_price: 252.1999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ROK
+  market_cap: 36557176832
+  avg_volume: 886785.8565737052
+  current_price: 324.3299865722656
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ROL
+  market_cap: 27998001152
+  avg_volume: 1912850.1992031874
+  current_price: 57.77000045776367
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Personal Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ROP
+  market_cap: 61592117248
+  avg_volume: 527173.9043824701
+  current_price: 572.8699951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ROST
+  market_cap: 47286329344
+  avg_volume: 2491892.231075697
+  current_price: 143.8000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Apparel Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: RSG
+  market_cap: 79052365824
+  avg_volume: 1142042.6294820716
+  current_price: 252.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Waste Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: RTX
+  market_cap: 185830653952
+  avg_volume: 6744535.059760956
+  current_price: 139.10000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: RVTY
+  market_cap: 10840504320
+  avg_volume: 891112.9482071713
+  current_price: 91.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SBAC
+  market_cap: 24248186880
+  avg_volume: 902537.8486055777
+  current_price: 225.67999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: SBUX
+  market_cap: 101866897408
+  avg_volume: 9693386.85258964
+  current_price: 89.63999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: SCHW
+  market_cap: 160347602944
+  avg_volume: 9287450.0
+  current_price: 88.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Capital Markets
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SHW
+  market_cap: 89584844800
+  avg_volume: 1602851.593625498
+  current_price: 357.4800109863281
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Specialty Chemicals
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SJM
+  market_cap: 11799516160
+  avg_volume: 1192900.0
+  current_price: 110.87999725341797
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Packaged Foods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SLB
+  market_cap: 45757014016
+  avg_volume: 11636556.660039762
+  current_price: 33.869998931884766
+  data_points: 503
+  data_start: '2023-06-06'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Equipment & Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SMCI
+  market_cap: 24797786112
+  avg_volume: 63748744.422310755
+  current_price: 41.54999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: SNA
+  market_cap: 16820446208
+  avg_volume: 313803.984063745
+  current_price: 321.6700134277344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Tools & Accessories
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SNPS
+  market_cap: 75408244736
+  avg_volume: 1067610.956175299
+  current_price: 486.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: SO
+  market_cap: 97102766080
+  avg_volume: 4474810.956175298
+  current_price: 88.26000213623047
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SOLV
+  market_cap: 12948291584
+  avg_volume: 1437140.9395973154
+  current_price: 74.83999633789062
+  data_points: 298
+  data_start: '2024-04-01'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SPG
+  market_cap: 61134233600
+  avg_volume: 1520558.9641434264
+  current_price: 162.10000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SPGI
+  market_cap: 159278874624
+  avg_volume: 1234543.8247011951
+  current_price: 519.3599853515625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Financial Data & Stock Exchanges
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SPY
+  market_cap: 549879939072
+  avg_volume: 65961440.637450196
+  current_price: 599.1400146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Unknown
+  industry: Unknown
+  country: Unknown
+  exchange: PCX
+  currency: USD
+- symbol: SRE
+  market_cap: 50119262208
+  avg_volume: 3322500.3984063747
+  current_price: 76.8499984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: STE
+  market_cap: 23975299072
+  avg_volume: 496677.09163346613
+  current_price: 243.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: STLD
+  market_cap: 19827515392
+  avg_volume: 1410737.8486055776
+  current_price: 133.55999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Steel
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: STT
+  market_cap: 28124651520
+  avg_volume: 2207327.490039841
+  current_price: 98.62000274658203
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: STX
+  market_cap: 26945191936
+  avg_volume: 2800993.2270916332
+  current_price: 126.97000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: Singapore
+  exchange: NMS
+  currency: USD
+- symbol: STZ
+  market_cap: 30611619840
+  avg_volume: 1445532.470119522
+  current_price: 171.92999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Brewers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SW
+  market_cap: 22613602304
+  avg_volume: 4552450.216450216
+  current_price: 43.31999969482422
+  data_points: 231
+  data_start: '2024-07-08'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Packaging & Containers
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: SWK
+  market_cap: 10232717312
+  avg_volume: 1691769.123505976
+  current_price: 66.13999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Tools & Accessories
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SWKS
+  market_cap: 10747734016
+  avg_volume: 2486055.77689243
+  current_price: 71.58999633789062
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: SYF
+  market_cap: 22542508032
+  avg_volume: 4075170.717131474
+  current_price: 59.220001220703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SYK
+  market_cap: 146709331968
+  avg_volume: 1359330.876494024
+  current_price: 383.8900146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: SYY
+  market_cap: 36114022400
+  avg_volume: 3062544.22310757
+  current_price: 74.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Food Distribution
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: T
+  market_cap: 202196779008
+  avg_volume: 37772797.41035856
+  current_price: 28.079999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Telecom Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TAP
+  market_cap: 10533276672
+  avg_volume: 1955147.2111553785
+  current_price: 52.0
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Beverages - Brewers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TDG
+  market_cap: 82334793728
+  avg_volume: 242332.86852589643
+  current_price: 1465.8900146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TDY
+  market_cap: 23461046272
+  avg_volume: 259054.58167330676
+  current_price: 500.6700134277344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Scientific & Technical Instruments
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TECH
+  market_cap: 7632985600
+  avg_volume: 1210364.143426295
+  current_price: 48.689998626708984
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Biotechnology
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TEL
+  market_cap: 48826462208
+  avg_volume: 1700969.3227091634
+  current_price: 164.64999389648438
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Electronic Components
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: TER
+  market_cap: 13672597504
+  avg_volume: 2199398.605577689
+  current_price: 85.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductor Equipment & Materials
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TFC
+  market_cap: 53245894656
+  avg_volume: 8922725.896414343
+  current_price: 40.65999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TGT
+  market_cap: 44218900480
+  avg_volume: 5305267.33067729
+  current_price: 97.31999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Discount Stores
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TJX
+  market_cap: 143301378048
+  avg_volume: 5233641.035856574
+  current_price: 128.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Apparel Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TKO
+  market_cap: 13565180928
+  avg_volume: 1122683.0677290836
+  current_price: 165.94000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TMO
+  market_cap: 151714840576
+  avg_volume: 1747533.0677290836
+  current_price: 401.8999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TMUS
+  market_cap: 279161733120
+  avg_volume: 4414569.52191235
+  current_price: 245.86000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Telecom Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TPL
+  market_cap: 25590841344
+  avg_volume: 124222.90836653387
+  current_price: 1113.260009765625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas E&P
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TPR
+  market_cap: 16397124608
+  avg_volume: 3947550.3984063747
+  current_price: 78.94999694824219
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Luxury Goods
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TRGP
+  market_cap: 36249337856
+  avg_volume: 1719523.90438247
+  current_price: 167.10000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Midstream
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TRMB
+  market_cap: 17230753792
+  avg_volume: 1392543.027888446
+  current_price: 72.22000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Scientific & Technical Instruments
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TROW
+  market_cap: 20771391488
+  avg_volume: 1462377.091633466
+  current_price: 94.27999877929688
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Asset Management
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TRV
+  market_cap: 62009667584
+  avg_volume: 1314986.2549800796
+  current_price: 273.69000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TSCO
+  market_cap: 27008540672
+  avg_volume: 5580139.84063745
+  current_price: 50.939998626708984
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Specialty Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TSLA
+  market_cap: 950634151936
+  avg_volume: 106163916.93227091
+  current_price: 295.1400146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Auto Manufacturers
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TSN
+  market_cap: 19703302144
+  avg_volume: 2612381.274900398
+  current_price: 55.310001373291016
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Farm Products
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TT
+  market_cap: 95659106304
+  avg_volume: 1217771.1155378486
+  current_price: 428.92999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Building Products & Equipment
+  country: Ireland
+  exchange: NYQ
+  currency: USD
+- symbol: TTWO
+  market_cap: 42561466368
+  avg_volume: 1695402.9880478089
+  current_price: 232.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Electronic Gaming & Multimedia
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TXN
+  market_cap: 174808186880
+  avg_volume: 5861090.6374502
+  current_price: 192.4199981689453
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Semiconductors
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: TXT
+  market_cap: 13643332608
+  avg_volume: 1219023.3067729084
+  current_price: 75.56999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Aerospace & Defense
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: TYL
+  market_cap: 24848621568
+  avg_volume: 239403.984063745
+  current_price: 576.219970703125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: UAL
+  market_cap: 27509602304
+  avg_volume: 7822756.972111554
+  current_price: 84.2300033569336
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Airlines
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: UBER
+  market_cap: 179004145664
+  avg_volume: 21680055.17928287
+  current_price: 85.5999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: UDR
+  market_cap: 15483226112
+  avg_volume: 2388669.322709163
+  current_price: 41.06999969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Residential
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: UHS
+  market_cap: 12204366848
+  avg_volume: 675664.7410358565
+  current_price: 189.38999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Care Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ULTA
+  market_cap: 20928468992
+  avg_volume: 924090.0398406375
+  current_price: 465.6400146484375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Specialty Retail
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: UNH
+  market_cap: 275062980608
+  avg_volume: 5308345.816733068
+  current_price: 303.2200012207031
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Healthcare Plans
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: UNP
+  market_cap: 133494054912
+  avg_volume: 2561204.581673307
+  current_price: 223.42999267578125
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Railroads
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: UPS
+  market_cap: 83197902848
+  avg_volume: 4466448.007968128
+  current_price: 98.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Integrated Freight & Logistics
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: URI
+  market_cap: 45931544576
+  avg_volume: 630421.1155378486
+  current_price: 706.6500244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Rental & Leasing Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: USB
+  market_cap: 69753004032
+  avg_volume: 9793405.378486056
+  current_price: 44.77000045776367
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Regional
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: V
+  market_cap: 709219385344
+  avg_volume: 6510240.039840638
+  current_price: 370.2200012207031
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Credit Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VICI
+  market_cap: 33254664192
+  avg_volume: 5934690.6374502
+  current_price: 31.469999313354492
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VLO
+  market_cap: 40199995392
+  avg_volume: 3209014.342629482
+  current_price: 128.35000610351562
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Refining & Marketing
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VLTO
+  market_cap: 24853020672
+  avg_volume: 1727945.9523809524
+  current_price: 100.2699966430664
+  data_points: 420
+  data_start: '2023-10-04'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Pollution & Treatment Controls
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VMC
+  market_cap: 34982461440
+  avg_volume: 877385.8565737052
+  current_price: 264.80999755859375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Basic Materials
+  industry: Building Materials
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VRSK
+  market_cap: 44706926592
+  avg_volume: 851076.2948207172
+  current_price: 319.6000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Consulting Services
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: VRSN
+  market_cap: 26763376640
+  avg_volume: 665556.5737051793
+  current_price: 285.0199890136719
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Infrastructure
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: VRTX
+  market_cap: 115687047168
+  avg_volume: 1316137.250996016
+  current_price: 450.5
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Biotechnology
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: VST
+  market_cap: 58914820096
+  avg_volume: 6311107.1713147415
+  current_price: 173.6199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Independent Power Producers
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VTI
+  market_cap: 611996270592
+  avg_volume: 3260444.0239043823
+  current_price: 295.1199951171875
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Unknown
+  industry: Unknown
+  country: Unknown
+  exchange: PCX
+  currency: USD
+- symbol: VTR
+  market_cap: 28720603136
+  avg_volume: 2519542.231075697
+  current_price: 63.63999938964844
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Healthcare Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: VTRS
+  market_cap: 10222752768
+  avg_volume: 9904728.685258964
+  current_price: 8.710000038146973
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - Specialty & Generic
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: VZ
+  market_cap: 184671748096
+  avg_volume: 20696491.43426295
+  current_price: 43.79999923706055
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Telecom Services
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WAB
+  market_cap: 35291316224
+  avg_volume: 1021102.390438247
+  current_price: 206.22999572753906
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Railroads
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WAT
+  market_cap: 20897810432
+  avg_volume: 481998.406374502
+  current_price: 351.1700134277344
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Diagnostics & Research
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WBA
+  market_cap: 9728302080
+  avg_volume: 16591727.290836653
+  current_price: 11.25
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Pharmaceutical Retailers
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: WBD
+  market_cap: 24295366656
+  avg_volume: 29077871.11553785
+  current_price: 9.819999694824219
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Communication Services
+  industry: Entertainment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: WDAY
+  market_cap: 67374141440
+  avg_volume: 2233617.729083665
+  current_price: 252.72000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Software - Application
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: WDC
+  market_cap: 19345287168
+  avg_volume: 7399401.529880478
+  current_price: 55.45000076293945
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Computer Hardware
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: WEC
+  market_cap: 33700550656
+  avg_volume: 2008046.812749004
+  current_price: 105.5999984741211
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WELL
+  market_cap: 101002887168
+  avg_volume: 2753611.952191235
+  current_price: 154.4499969482422
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Healthcare Facilities
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WFC
+  market_cap: 248391565312
+  avg_volume: 17246823.505976096
+  current_price: 76.33000183105469
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Banks - Diversified
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WM
+  market_cap: 95101083648
+  avg_volume: 1602100.5976095619
+  current_price: 236.3300018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Waste Management
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WMB
+  market_cap: 73944367104
+  avg_volume: 6714809.561752988
+  current_price: 60.560001373291016
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Midstream
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WMT
+  market_cap: 779846746112
+  avg_volume: 18376083.26693227
+  current_price: 97.47000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Defensive
+  industry: Discount Stores
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WRB
+  market_cap: 28155803648
+  avg_volume: 1788073.2071713146
+  current_price: 74.22000122070312
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance - Property & Casualty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WSM
+  market_cap: 19409084416
+  avg_volume: 2047703.984063745
+  current_price: 157.8000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Specialty Retail
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WST
+  market_cap: 16142943232
+  avg_volume: 584361.7529880478
+  current_price: 224.69000244140625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Instruments & Supplies
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WTW
+  market_cap: 30661083136
+  avg_volume: 571827.6892430279
+  current_price: 309.239990234375
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Financial Services
+  industry: Insurance Brokers
+  country: United Kingdom
+  exchange: NMS
+  currency: USD
+- symbol: WY
+  market_cap: 19386548224
+  avg_volume: 3692832.071713147
+  current_price: 26.729999542236328
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Real Estate
+  industry: REIT - Specialty
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: WYNN
+  market_cap: 8709348352
+  avg_volume: 2257420.119521912
+  current_price: 83.30000305175781
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Resorts & Casinos
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: XEL
+  market_cap: 39513899008
+  avg_volume: 4058343.625498008
+  current_price: 68.51000213623047
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Utilities
+  industry: Utilities - Regulated Electric
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: XLK
+  market_cap: 64847269888
+  avg_volume: 5828417.729083666
+  current_price: 238.36000061035156
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Unknown
+  industry: Unknown
+  country: Unknown
+  exchange: PCX
+  currency: USD
+- symbol: XOM
+  market_cap: 449366163456
+  avg_volume: 16979117.131474104
+  current_price: 104.2699966430664
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Energy
+  industry: Oil & Gas Integrated
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: XYL
+  market_cap: 30827706368
+  avg_volume: 1381110.956175299
+  current_price: 126.68000030517578
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Industrials
+  industry: Specialty Industrial Machinery
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: YUM
+  market_cap: 40257671168
+  avg_volume: 1871278.685258964
+  current_price: 144.8300018310547
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Consumer Cyclical
+  industry: Restaurants
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ZBH
+  market_cap: 18277197824
+  avg_volume: 1677590.0398406375
+  current_price: 92.37999725341797
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Medical Devices
+  country: United States
+  exchange: NYQ
+  currency: USD
+- symbol: ZBRA
+  market_cap: 15020324864
+  avg_volume: 439042.828685259
+  current_price: 295.3599853515625
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Technology
+  industry: Communication Equipment
+  country: United States
+  exchange: NMS
+  currency: USD
+- symbol: ZTS
+  market_cap: 75756593152
+  avg_volume: 2446085.458167331
+  current_price: 170.16000366210938
+  data_points: 502
+  data_start: '2023-06-07'
+  data_end: '2025-06-06'
+  sector: Healthcare
+  industry: Drug Manufacturers - Specialty & Generic
+  country: United States
+  exchange: NYQ
+  currency: USD
+invalid_symbols:
+- symbol: BF.B
+  reasons:
+  - No historical data available
+  data_points: 0
+- symbol: BRK.B
+  reasons:
+  - No historical data available
+  data_points: 0
+- symbol: NVR
+  reasons:
+  - 'Average volume too low: 21,457'
+  data_points: 502
+summary:
+  total_tested: 507
+  valid_count: 504
+  invalid_count: 3
+  validation_date: '2025-06-08T10:32:36.532938'

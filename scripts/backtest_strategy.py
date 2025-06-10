@@ -28,31 +28,25 @@ plt.style.use('seaborn-v0_8')
 class MLTradingStrategy:
     """ML-based trading strategy backtester"""
     
-    def __init__(self, model_package, initial_capital=100000, transaction_cost=0.001):
+    def __init__(self, model_package, initial_capital=100000, transaction_cost=0.001, use_signals=False, use_model=False, use_technical=False):
+        self.model_package = model_package  # Store for access to features_df/target
         self.model = model_package['model']
-        self.scaler = model_package['scaler']
         self.feature_names = model_package['feature_names']
         self.target_symbol = model_package['target_symbol']
         self.config = model_package['config']
-        
-        # Check for target scaler (Linear Regression models may have this)
-        self.target_scaler = model_package.get('target_scaler', None)
+        # Store new flags
+        self.use_signals = use_signals
+        self.use_model = use_model
+        self.use_technical = use_technical
         
         # Debug model scaling information
         model_type = self.config.get('model_type', 'unknown')
-        has_target_scaler = self.target_scaler is not None
-        is_linear_regression = hasattr(self.model, 'coef_')
         
         print(f"🤖 Model Setup:")
         print(f"  Model Type: {model_type}")
-        print(f"  Is Linear Regression: {is_linear_regression}")
-        print(f"  Has Target Scaler: {has_target_scaler}")
-        
-        if is_linear_regression and not has_target_scaler:
-            print(f"  ⚠️ Enhanced Linear Regression model detected without target scaler")
-            print(f"  📏 Will apply scale correction factor during prediction")
-        elif has_target_scaler:
-            print(f"  ✅ Target scaler available - will use proper inverse transformation")
+        print(f"  Use signals: {self.use_signals}")
+        print(f"  Use model: {self.use_model}")
+        print(f"  Use technical: {self.use_technical}")
         
         self.initial_capital = initial_capital
         self.transaction_cost = transaction_cost  # 0.1% per trade
@@ -61,59 +55,52 @@ class MLTradingStrategy:
         self.portfolio_history = []
         
     def prepare_data(self):
-        """Prepare data for backtesting using strategy period (not training period)"""
-        
+        """Prepare data for backtesting using strategy period (not training period), using stored features_df and target from model_package"""
         print(f"📊 Preparing data for {self.target_symbol}...")
-        
+
         # Load periods from config
         periods = self.get_periods_from_config()
         print(f"📅 Training period: {periods['training']['start']} to {periods['training']['end']}")
         print(f"📅 Strategy period: {periods['strategy']['start']} to {periods['strategy']['end']}")
-        
-        # Get features for the full dataset
-        features_df = calculate_technical_indicators(self.target_symbol, self.config)
-        
-        if features_df.empty:
+
+        # Use features_df and target from model_package (no regeneration)
+        if not hasattr(self, 'model_package'):
+            raise ValueError("MLTradingStrategy must be initialized with model_package as an attribute.")
+        model_package = self.model_package
+        if 'features_df' not in model_package or 'target' not in model_package:
+            print(f"❌ Model package missing features_df or target. Please retrain model.")
             return None
-        
-        # Add lag features if they're in the model's feature list
-        features_df = self.add_lag_features(features_df)
-        
-        # Add rolling features if they're in the model's feature list
-        features_df = self.add_rolling_features(features_df)
-        
-        # Add target (next day return)
-        target_days = self.config.get('prediction_horizon', 1)
-        features_df['next_return'] = features_df['returns_1d'].shift(-target_days)
-        features_df = features_df.dropna()
-        
+        features_df = model_package['features_df']
+        target = model_package['target']
+
         # Get price data for actual trading
         db_manager = DatabaseManager()
         with db_manager:
             price_data = db_manager.get_stock_prices(self.target_symbol)
-        
+
+        # Drop 'close' from features_df if it exists to avoid join overlap
+        if 'close' in features_df.columns:
+            features_df = features_df.drop(columns=['close'])
+
         # Merge features with price data
         data = features_df.join(price_data[['close']], how='inner')
-        
+        # Add target column for backtest reference
+        data['target'] = target.reindex(data.index)
+
         # CRITICAL: Filter to strategy period only (not training period)
         strategy_start = pd.to_datetime(periods['strategy']['start'])
         strategy_end = pd.to_datetime(periods['strategy']['end'])
-        
-        # Filter data to strategy period
-        strategy_data = data[
-            (data.index >= strategy_start) & 
-            (data.index <= strategy_end)
-        ].copy()
-        
+        strategy_data = data[(data.index >= strategy_start) & (data.index <= strategy_end)].copy()
+
         if strategy_data.empty:
             print(f"❌ No data available for strategy period {strategy_start} to {strategy_end}")
             print(f"📊 Available data range: {data.index.min()} to {data.index.max()}")
             return None
-        
+
         print(f"✅ Prepared {len(strategy_data)} strategy period trading days")
         print(f"📊 Features available: {len([f for f in self.feature_names if f in strategy_data.columns])}/{len(self.feature_names)}")
         print(f"🎯 Strategy period: {strategy_data.index.min()} to {strategy_data.index.max()}")
-        
+
         return strategy_data
 
     def get_periods_from_config(self):
@@ -233,39 +220,33 @@ class MLTradingStrategy:
         
         return features_df
     
-    def generate_signals(self, data, strategy_type='threshold', threshold=0.01):
-        """Generate trading signals based on predictions"""
-        
+    def generate_signals(self, data, strategy_type='threshold', threshold=0.01, technical_signals=True):
+        """Generate trading signals based on model predictions and/or technical indicators, respecting CLI flags."""
         print(f"🔮 Generating {strategy_type} signals...")
-        
+
         # Debug: Check feature availability
         available_features = set(data.columns)
         required_features = set(self.feature_names)
         missing_features = required_features - available_features
-        
+
         if missing_features:
             print(f"⚠️ Missing {len(missing_features)} features from model:")
             print(f"   Sample missing: {list(missing_features)[:5]}...")
-            
             # Create missing features with appropriate default values
             for feature in missing_features:
                 if 'lag' in feature:
-                    # For lag features, use shifted values
                     base_col = feature.split('_lag_')[0]
                     lag_periods = int(feature.split('_lag_')[1])
                     if base_col in data.columns:
                         data[feature] = data[base_col].shift(lag_periods)
                     else:
                         data[feature] = 0
-                        
                 elif 'roll' in feature:
-                    # For rolling features, calculate them
                     parts = feature.split('_')
-                    if len(parts) >= 4:  # e.g., close_roll_5_mean
+                    if len(parts) >= 4:
                         base_col = parts[0]
                         window = int(parts[2])
                         func = parts[3]
-                        
                         if base_col in data.columns:
                             if func == 'mean':
                                 data[feature] = data[base_col].rolling(window).mean()
@@ -280,96 +261,103 @@ class MLTradingStrategy:
                         else:
                             data[feature] = 0
                 else:
-                    # Default to 0 for other missing features
                     data[feature] = 0
-            
             print(f"✅ Added {len(missing_features)} missing features")
-        
+
         # Ensure all required features are present and in correct order
         feature_data = data[self.feature_names].copy()
-        
-        # Forward fill any remaining NaN values
         feature_data = feature_data.fillna(method='ffill').fillna(0)
-        
+
         signals = []
         predictions = []
         confidences = []
-        
+        tech_signals = []
+
+        # --- Technical signal logic ---
+        # Use technical signals if either flag is set
+        use_tech = (self.use_signals or self.use_technical) and any(col.lower() == 'close' for col in data.columns) and 'sma_10' in data.columns
+        use_model = self.use_model
+
+        # Find the actual close column name (case-insensitive)
+        close_col = next((col for col in data.columns if col.lower() == 'close'), None)
+        prev_price = None
+        prev_sma = None
         for i, (date, row) in enumerate(feature_data.iterrows()):
-            
-            # Get features for this date
-            feature_values = row.values.reshape(1, -1)
-            
-            # Handle any remaining missing features
-            if np.isnan(feature_values).any():
-                feature_values = np.nan_to_num(feature_values, 0)            # Scale features
-            try:
-                scaled_features = self.scaler.transform(feature_values)
-                prediction = self.model.predict(scaled_features)[0]
-                
-                # Handle different model types and scaling
-                model_type = self.config.get('model_type', 'unknown')
-                
-                # Apply target scaler inverse transformation if available (old Linear Regression models)
-                if self.target_scaler is not None:
-                    prediction = self.target_scaler.inverse_transform([[prediction]])[0][0]
-                
-                # For enhanced Linear Regression models without target_scaler, apply scale correction
-                elif hasattr(self.model, 'coef_') and self.target_scaler is None:
-                    # This is a Linear Regression model without target scaling
-                    # The predictions are likely in wrong scale, need to correct
-                    # Enhanced models predict scaled targets, but we need unscaled returns
-                    # Based on analysis: predictions should be ~±0.008 but are ~±0.57
-                    # Apply empirical scale correction factor
-                    scale_factor = 0.01  # Convert from scaled to percentage returns
-                    prediction = prediction * scale_factor
-                    
-            except Exception as e:
-                print(f"⚠️ Error predicting for {date}: {e}")
-                prediction = 0
-            
+            # --- Model prediction logic ---
+            prediction = 0
+            model_signal = 0
+            if use_model:
+                feature_values = row.values.reshape(1, -1)
+                if np.isnan(feature_values).any():
+                    feature_values = np.nan_to_num(feature_values, 0)
+                try:
+                    prediction = self.model.predict(feature_values)[0]
+                except Exception as e:
+                    print(f"⚠️ Error predicting for {date}: {e}")
+                    prediction = 0
+                if strategy_type == 'threshold':
+                    model_signal = 1 if prediction > threshold else -1 if prediction < -threshold else 0
+                elif strategy_type == 'directional':
+                    model_signal = np.sign(prediction)
+                else:
+                    model_signal = 0
             predictions.append(prediction)
-            
-            # Generate signal based on strategy
-            if strategy_type == 'threshold':
-                # Buy if prediction > threshold, sell if < -threshold, hold otherwise
-                if prediction > threshold:
-                    signal = 1  # Buy
-                elif prediction < -threshold:
-                    signal = -1  # Sell
-                else:
-                    signal = 0  # Hold
-                    
-            elif strategy_type == 'directional':
-                # Simple directional: buy if positive prediction, sell if negative
-                signal = 1 if prediction > 0 else -1
-                
-            elif strategy_type == 'quantile':
-                # Use quantile-based signals (only trade on strong signals)
-                if i < 50:  # Need history for quantiles
-                    signal = 0
-                else:
-                    recent_preds = predictions[-50:]  # Last 50 predictions
-                    upper_q = np.percentile(recent_preds, 80)
-                    lower_q = np.percentile(recent_preds, 20)
-                    
-                    if prediction > upper_q:
-                        signal = 1
-                    elif prediction < lower_q:
-                        signal = -1
+
+            # --- Technical signal: price crosses SMA (e.g., 10-day) ---
+            tech_signal = 0
+            if use_tech and close_col is not None:
+                price = data.loc[date, close_col]
+                sma = data.loc[date, 'sma_10']
+                if prev_price is not None and prev_sma is not None:
+                    if prev_price < prev_sma and price > sma:
+                        tech_signal = 1  # Bullish crossover
+                    elif prev_price > prev_sma and price < sma:
+                        tech_signal = -1  # Bearish crossover
+                prev_price = price
+                prev_sma = sma
+            tech_signals.append(tech_signal)
+
+            # --- Combine model and technical signals based on flags ---
+            # If both are enabled, require both to agree (strongest), or allow either (more signals)
+            if use_model and use_tech:
+                # OR logic: if either is nonzero, use that signal (if both nonzero and agree, use that; if both nonzero and disagree, use 0)
+                if model_signal != 0 and tech_signal != 0:
+                    if model_signal == tech_signal:
+                        signal = model_signal
                     else:
-                        signal = 0
-            
+                        signal = 0  # Disagreement: no trade (or could use model_signal or tech_signal)
+                elif model_signal != 0:
+                    signal = model_signal
+                elif tech_signal != 0:
+                    signal = tech_signal
+                else:
+                    signal = 0
+            elif use_model:
+                signal = model_signal
+            elif use_tech:
+                signal = tech_signal
+            else:
+                signal = 0  # No signals if neither flag is set
+
             signals.append(signal)
-            
-            # Simple confidence measure (distance from 0)
-            confidence = abs(prediction)
+            # Set confidence: if using only technical, set to 1; if using model, use abs(prediction)
+            if use_model:
+                confidence = abs(prediction)
+            elif use_tech:
+                confidence = 1
+            else:
+                confidence = 0
             confidences.append(confidence)
-        
+
         data['prediction'] = predictions
         data['signal'] = signals
         data['confidence'] = confidences
-        
+        data['tech_signal'] = tech_signals
+
+        # Use stored target as actual returns for backtest
+        if 'target' in data.columns:
+            data['actual_return'] = data['target']
+
         # Debug: Show prediction statistics
         pred_stats = pd.Series(predictions)
         print(f"📊 Prediction Statistics:")
@@ -378,20 +366,19 @@ class MLTradingStrategy:
         print(f"  Max: {pred_stats.max():.6f}")
         print(f"  Mean: {pred_stats.mean():.6f}")
         print(f"  Std: {pred_stats.std():.6f}")
-        
+
         signal_counts = pd.Series(signals).value_counts()
         print(f"📈 Signals generated:")
         print(f"  Buy (1):  {signal_counts.get(1, 0)}")
         print(f"  Hold (0): {signal_counts.get(0, 0)}")
         print(f"  Sell (-1): {signal_counts.get(-1, 0)}")
-        
-        # Check if signals are being generated appropriately
+
         threshold_check = abs(pred_stats.max()) if abs(pred_stats.max()) > abs(pred_stats.min()) else abs(pred_stats.min())
         if threshold_check > 0:
             print(f"  Max prediction magnitude: {threshold_check:.6f}")
             print(f"  Threshold: {threshold:.6f}")
             print(f"  Ratio: {threshold_check/threshold:.2f}x threshold")
-        
+
         return data
     
     def backtest_strategy(self, data, max_position_size=1.0, stop_loss=None, take_profit=None):
@@ -411,7 +398,7 @@ class MLTradingStrategy:
             price = row['close']
             signal = row['signal']
             prediction = row['prediction']
-            actual_return = row['next_return'] if 'next_return' in row else 0
+            actual_return = row['actual_return'] if 'actual_return' in row else 0
             
             # Calculate current portfolio value
             portfolio_value = capital + (shares * price if shares != 0 else 0)
@@ -420,31 +407,38 @@ class MLTradingStrategy:
             confidence = row['confidence']
             position_size = min(max_position_size, confidence * 2)  # Scale by confidence
             
-            # Check for stop loss or take profit if we have a position
-            if shares != 0 and stop_loss is not None:
-                entry_price = self.trades[-1]['entry_price'] if self.trades else price
-                if position > 0 and (price / entry_price - 1) < -stop_loss:
-                    signal = -1  # Force sell
-                elif position < 0 and (entry_price / price - 1) < -stop_loss:
-                    signal = 1   # Force cover
+            # --- NEW LOGIC: Always close any existing position before opening a new one on a signal ---
+            # Close long position if signal is not hold and we are long
+            if shares > 0 and signal != 0:
+                capital += shares * price * (1 - self.transaction_cost)
+                self.trades.append({
+                    'date': date,
+                    'action': 'sell',
+                    'price': price,
+                    'shares': shares,
+                    'value': shares * price,
+                    'capital': capital,
+                    'prediction': prediction
+                })
+                shares = 0
+                position = 0
+            # Close short position if signal is not hold and we are short
+            if shares < 0 and signal != 0:
+                capital += -shares * price * (1 - self.transaction_cost)
+                self.trades.append({
+                    'date': date,
+                    'action': 'cover',
+                    'price': price,
+                    'shares': -shares,
+                    'value': -shares * price,
+                    'capital': capital,
+                    'prediction': prediction
+                })
+                shares = 0
+                position = 0
             
-            # Execute trades based on signals
-            if signal == 1 and position <= 0:  # Buy signal
-                # Close short position if any
-                if shares < 0:
-                    capital += -shares * price * (1 - self.transaction_cost)
-                    self.trades.append({
-                        'date': date,
-                        'action': 'cover',
-                        'price': price,
-                        'shares': -shares,
-                        'value': -shares * price,
-                        'capital': capital,
-                        'prediction': prediction
-                    })
-                    shares = 0
-                
-                # Open long position
+            # Open new position if signal is buy or sell
+            if signal == 1:
                 shares_to_buy = int((capital * position_size) / price)
                 if shares_to_buy > 0:
                     cost = shares_to_buy * price * (1 + self.transaction_cost)
@@ -463,28 +457,14 @@ class MLTradingStrategy:
                             'prediction': prediction,
                             'entry_price': price
                         })
-            
-            elif signal == -1 and position >= 0:  # Sell signal
-                # Close long position if any
-                if shares > 0:
-                    capital += shares * price * (1 - self.transaction_cost)
-                    self.trades.append({
-                        'date': date,
-                        'action': 'sell',
-                        'price': price,
-                        'shares': shares,
-                        'value': shares * price,
-                        'capital': capital,
-                        'prediction': prediction
-                    })
-                    shares = 0
-                
-                # Open short position (if allowed)
+            elif signal == -1:
+                # Uncomment below to allow shorting
                 # shares_to_short = int((capital * position_size) / price)
                 # if shares_to_short > 0:
                 #     capital += shares_to_short * price * (1 - self.transaction_cost)
                 #     shares -= shares_to_short
                 #     position = -1
+                pass
             
             # Record portfolio state
             current_portfolio_value = capital + (shares * price if shares != 0 else 0)
@@ -739,9 +719,17 @@ def find_latest_model_for_symbol(symbol):
     print(f"📦 Found latest model: {latest_model.name}")
     return latest_model
 
-def run_backtest(target_symbol=None):
-    """Run complete backtesting workflow for specified symbol"""
-    
+def load_trading_config():
+    """Load trading strategy parameters from config.yaml if available."""
+    config_path = Path(__file__).parent.parent / 'config.yaml'
+    if config_path.exists():
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        return config.get('trading', {})
+    return {}
+
+def run_backtest(target_symbol=None, initial_capital=100000, transaction_cost=0.001, max_position_size=1.0, use_signals=False, use_model=False, use_technical=False):
+    """Run complete backtesting workflow for specified symbol, using config values."""
     print("🏁 ML Trading Strategy Backtester")
     print("="*50)
     
@@ -782,8 +770,11 @@ def run_backtest(target_symbol=None):
     # Initialize strategy
     strategy = MLTradingStrategy(
         model_package=model_package,
-        initial_capital=100000,
-        transaction_cost=0.001  # 0.1% transaction cost
+        initial_capital=initial_capital,
+        transaction_cost=transaction_cost,
+        use_signals=use_signals,
+        use_model=use_model,
+        use_technical=use_technical
     )
     
     # Prepare data
@@ -809,7 +800,7 @@ def run_backtest(target_symbol=None):
         data_with_signals = strategy.generate_signals(data, **params)
         
         # Run backtest
-        final_capital = strategy.backtest_strategy(data_with_signals, max_position_size=0.8)
+        final_capital = strategy.backtest_strategy(data_with_signals, max_position_size=max_position_size)
         
         # Calculate metrics
         metrics, df = strategy.calculate_performance_metrics()
@@ -860,24 +851,42 @@ def run_backtest(target_symbol=None):
 def main():
     """Main function with argument parsing"""
     import argparse
-    
     parser = argparse.ArgumentParser(description='Backtest ML trading strategy for a specific symbol')
     parser.add_argument('--symbol', type=str, help='Stock symbol to backtest (e.g., ACN, AAPL)')
-    parser.add_argument('--capital', type=float, default=100000, help='Initial capital (default: 100000)')
-    parser.add_argument('--transaction-cost', type=float, default=0.001, help='Transaction cost (default: 0.001)')
-    
+    parser.add_argument('--capital', type=float, help='Initial capital (overrides config)')
+    parser.add_argument('--transaction-cost', type=float, help='Transaction cost (overrides config)')
+    parser.add_argument('--max-position-size', type=float, help='Max position size (overrides config)')
+    parser.add_argument('--use-signals', action='store_true', help='Use trading signals (rules-based, e.g. crossovers)')
+    parser.add_argument('--use-model', action='store_true', help='Use predictive model for trading signals')
+    parser.add_argument('--use-technical', action='store_true', help='Use technical indicators (e.g., RSI, SMA) for trading signals')
     args = parser.parse_args()
-    
+
+    # Load trading config from config.yaml
+    trading_config = load_trading_config()
+
+    # Use config.yaml as default, allow CLI override
+    initial_capital = args.capital if args.capital is not None else trading_config.get('initial_capital', 100000)
+    transaction_cost = args.transaction_cost if args.transaction_cost is not None else trading_config.get('transaction_cost', 0.001)
+    max_position_size = args.max_position_size if args.max_position_size is not None else trading_config.get('max_position_size', 1.0)
+
     if args.symbol:
         print(f"🎯 Running backtest for: {args.symbol.upper()}")
         target_symbol = args.symbol.upper()
     else:
         print("⚠️ No symbol specified - will use latest available model")
         target_symbol = None
-    
-    # Run backtest
-    results = run_backtest(target_symbol)
-    
+
+    # Pass new flags to run_backtest
+    results = run_backtest(
+        target_symbol,
+        initial_capital,
+        transaction_cost,
+        max_position_size,
+        use_signals=args.use_signals,
+        use_model=args.use_model,
+        use_technical=args.use_technical
+    )
+
     if results:
         print(f"\n✅ Backtest completed successfully!")
     else:

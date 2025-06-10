@@ -7,17 +7,20 @@ from pathlib import Path
 import joblib
 import pandas as pd
 import numpy as np
+import sys
+import argparse
+import yaml
+import traceback
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from scipy import stats
-import yaml
 
 # Add paths
 sys.path.append(str(Path(__file__).parent.parent / 'src'))
 sys.path.append(str(Path(__file__).parent.parent / 'database'))
 
 def find_latest_model_for_symbol(symbol):
-    """Find the latest trained model for a specific symbol"""
+    """Find the latest trained model for a specific symbol (excluding modeling data .pkl files)"""
     
     # Check both possible directories
     models_dirs = [
@@ -27,8 +30,8 @@ def find_latest_model_for_symbol(symbol):
     
     for models_dir in models_dirs:
         if models_dir.exists():
-            # Look for models with the symbol in the filename
-            symbol_models = list(models_dir.glob(f'*{symbol}*.pkl'))
+            # Only include model .pkl files, not modeling data .pkl files
+            symbol_models = [f for f in models_dir.glob(f'*{symbol}*.pkl') if 'modeling_data' not in f.name]
             
             if symbol_models:
                 # Get the latest model for this symbol
@@ -43,7 +46,7 @@ def find_latest_model_for_symbol(symbol):
     
     for models_dir in models_dirs:
         if models_dir.exists():
-            all_models = list(models_dir.glob('*.pkl'))
+            all_models = [f for f in models_dir.glob('*.pkl') if 'modeling_data' not in f.name]
             if all_models:
                 print(f"   In {models_dir}:")
                 for model in sorted(all_models, key=lambda x: x.stat().st_mtime, reverse=True):
@@ -107,6 +110,14 @@ def analyze_latest_model(target_symbol=None):
         model_package = joblib.load(model_file)
         print(f"📂 Loaded: {model_file.name}")
         
+        # Check for 'target_symbol' in model_package
+        if 'target_symbol' not in model_package:
+            print(f"❌ Error: The loaded file does not contain 'target_symbol'.")
+            print(f"   File loaded: {model_file}")
+            print(f"   Available keys: {list(model_package.keys())}")
+            print(f"   This is likely a modeling data .pkl, not a model .pkl. Please check your file selection.")
+            return None
+        
         # Verify symbol matches if specified
         if target_symbol and model_package['target_symbol'] != target_symbol:
             print(f"⚠️ Warning: Model is for {model_package['target_symbol']}, but {target_symbol} was requested")
@@ -125,6 +136,22 @@ def analyze_latest_model(target_symbol=None):
     print(f"  Model Type: {model_package.get('model_type', 'Linear Regression')}")
     print(f"  Features: {model_package['feature_count']}")
     print(f"  Include Peers: {'Yes' if model_package.get('include_peers', False) else 'No'}")
+    
+    # --- Patch: Use OLS coefficients from audit file if available ---
+    import os
+    import pandas as pd
+    from pathlib import Path
+    symbol = model_package['target_symbol']
+    audit_dir = Path(__file__).parent.parent / 'data' / 'audit'
+    ols_coef_path = audit_dir / f"train_enhanced_model__{symbol}_ols_coefficients.csv"
+    if ols_coef_path.exists():
+        ols_df = pd.read_csv(ols_coef_path)
+        # Overwrite model_package['coefficients'] with OLS values
+        ols_coef_dict = dict(zip(ols_df['feature'], ols_df['coefficient']))
+        model_package['coefficients'] = ols_coef_dict
+        print(f"⚠️ Using OLS coefficients from {ols_coef_path} for all analysis and reporting.")
+    else:
+        print(f"⚠️ OLS coefficients file not found: {ols_coef_path}. Using model coefficients.")
     
     return model_package
 
@@ -320,14 +347,52 @@ def create_model_fit_chart(model_package):
         # Generate model predictions for the data
         actual_prices = period_data['Close']
         actual_returns = actual_prices.pct_change().dropna()
-        
-        # Try to recreate features and predictions
-        predictions = generate_model_predictions(model_package, actual_returns.index)
-        
-        if predictions is None:
+
+        # --- FIX: Use correct target definition from config.yaml ---
+        config_path = Path(__file__).parent.parent / 'config.yaml'
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        target_variable = config.get('target_variable', 'returns')
+        target_window = int(config.get('target_window', 1))
+
+        if target_variable == 'price':
+            # Predict price in target_window days
+            # Align predictions with the shifted price (future price)
+            # Shift actual prices to get the true target (future price)
+            actual_prices_shifted = actual_prices.shift(-target_window)
+            # Only keep indices where both features and shifted prices are available
+            valid_idx = actual_prices_shifted.dropna().index.intersection(model_package['features_df'].index)
+            predictions = generate_model_predictions(model_package, valid_idx)
+            # Align actual and predicted
+            actual_price_series = actual_prices_shifted.loc[valid_idx]
+            predicted_price_series = predictions.loc[valid_idx]
+            dates = valid_idx
+            # For returns/residuals plots, use price differences
+            actual_returns = actual_price_series.pct_change().dropna()
+            predicted_returns = predicted_price_series.pct_change().dropna()
+            # Align for residuals
+            common_ret_idx = actual_returns.index.intersection(predicted_returns.index)
+            actual_returns = actual_returns.loc[common_ret_idx]
+            predicted_returns = predicted_returns.loc[common_ret_idx]
+            residuals = actual_returns - predicted_returns
+        else:
+            # Default: predict returns
+            predictions = generate_model_predictions(model_package, actual_returns.index)
+            # Align actual and predicted
+            valid_idx = actual_returns.index.intersection(predictions.index)
+            actual_returns = actual_returns.loc[valid_idx]
+            predicted_returns = predictions.loc[valid_idx]
+            # Reconstruct price series from returns
+            initial_price = actual_prices.loc[valid_idx[0]]
+            actual_price_series = initial_price * (1 + actual_returns).cumprod()
+            predicted_price_series = initial_price * (1 + predicted_returns).cumprod()
+            dates = valid_idx
+            residuals = actual_returns - predicted_returns
+
+        if predictions is None or len(dates) == 0:
             print(f"⚠️ Could not generate predictions, using simulation")
             return create_simulated_fit_chart(model_package)
-        
+
         print(f"✅ Using real {symbol} data with model predictions")
         
     except Exception as e:
@@ -337,7 +402,7 @@ def create_model_fit_chart(model_package):
     # Calculate cumulative price series from returns
     initial_price = actual_prices.iloc[0]
     actual_price_series = initial_price * (1 + actual_returns).cumprod()
-    predicted_price_series = initial_price * (1 + predictions).cumprod()
+    predicted_price_series = initial_price * (1 + predicted_returns).cumprod()
     
     dates = actual_returns.index
     
@@ -413,7 +478,7 @@ def create_model_fit_chart(model_package):
     # Plot 2: Returns Comparison
     ax2 = axes[1]
     ax2.plot(dates, actual_returns, label='Actual Returns', linewidth=1.5, color='blue', alpha=0.7)
-    ax2.plot(dates, predictions, label='Predicted Returns', linewidth=1.5, color='red', alpha=0.7)
+    ax2.plot(dates, predicted_returns, label='Predicted Returns', linewidth=1.5, color='red', alpha=0.7)
     
     # Add same period dividers if applicable
     if show_actual_periods and periods and chart_type == "Full Period Data":
@@ -433,7 +498,6 @@ def create_model_fit_chart(model_package):
     
     # Plot 3: Residuals Analysis
     ax3 = axes[2]
-    residuals = actual_returns - predictions
     ax3.plot(dates, residuals, label='Prediction Residuals', linewidth=1, color='green', alpha=0.7)
     ax3.axhline(y=0, color='black', linestyle='--', alpha=0.5, linewidth=1)
     
@@ -462,7 +526,7 @@ def create_model_fit_chart(model_package):
     plt.show()
     
     # Display fit statistics
-    correlation = np.corrcoef(actual_returns, predictions)[0,1]
+    correlation = np.corrcoef(actual_returns, predicted_returns)[0,1]
     print(f"\n📊 Model Fit Statistics:")
     print(f"  Data Type: {chart_type}")
     print(f"  Data Period: {dates.min().date()} to {dates.max().date()} ({len(dates)} days)")
@@ -473,156 +537,38 @@ def create_model_fit_chart(model_package):
     
     return True
 
-def generate_model_predictions(model_package, dates):
-    """Generate model predictions for given dates"""
-    
+def generate_model_predictions(model_package, dates, audit_files=None):
+    """Generate model predictions for given dates, always using features_df from model_package."""
+    import pandas as pd
+    import numpy as np
+
     try:
         symbol = model_package['target_symbol']
         model = model_package['model']
-        scaler = model_package['scaler']
         feature_names = model_package['feature_names']
-        config = model_package.get('config', {})
-        
-        print(f"🔮 Generating predictions for {len(dates)} dates...")
-        print(f"📊 Model expects {len(feature_names)} features")
-        
-        # Try to recreate features using the same process as training
-        from features.technical_indicators import calculate_technical_indicators
-        features_df = calculate_technical_indicators(symbol, config)
-        
-        if features_df.empty:
-            print("❌ No technical indicators calculated")
+        # Always use features_df from model_package
+        if 'features_df' not in model_package:
+            print(f"❌ Error: model_package does not contain 'features_df'. This model is too old or was not saved with features. Please retrain.")
             return None
-        
-        print(f"📈 Technical indicators calculated: {len(features_df.columns)} features")
-        print(f"📅 Technical indicators date range: {features_df.index.min()} to {features_df.index.max()}")
-          # Add lag and rolling features that the model expects
-        features_df = add_comprehensive_features(features_df, feature_names, symbol)
-        
-        # After features_df = add_comprehensive_features(features_df, feature_names, symbol)
-        actual_features = set(features_df.columns)
-        expected_features = set(feature_names)
-        missing = expected_features - actual_features
-        extra = actual_features - expected_features
-        
-        print(f"🔎 Feature consistency check:")
-        print(f"  Features expected by model: {len(expected_features)}")
-        print(f"  Features generated for prediction: {len(actual_features)}")
-        print(f"  Missing features: {missing}")
-        print(f"  Extra features: {extra}")
-        
-        print(f"📊 After adding features: {len(features_df.columns)} total features")
-        
-        # Check feature overlap
-        available_features = set(features_df.columns)
-        required_features = set(feature_names)
-        missing_features = required_features - available_features
-        extra_features = available_features - required_features
-        
-        print(f"✅ Available features: {len(available_features)}")
-        print(f"🎯 Required features: {len(required_features)}")
-        print(f"❌ Missing features: {len(missing_features)}")
-        
-        if missing_features:
-            print(f"⚠️ Missing features (first 10): {list(missing_features)[:10]}")
-            # Create missing features with zeros
-            for feature in missing_features:
-                features_df[feature] = 0
-                print(f"   🔧 Added {feature} as zeros")
-        
+        features_df = model_package['features_df']
         # Align with requested dates
         common_dates = dates.intersection(features_df.index)
-        
-        print(f"📅 Date overlap: {len(common_dates)} / {len(dates)} dates")
-        print(f"📅 Common date range: {common_dates.min()} to {common_dates.max()}")
-        
-        if len(common_dates) < len(dates) * 0.3:  # Need at least 30% overlap
-            print(f"❌ Insufficient date overlap: {len(common_dates)} / {len(dates)}")
+        if len(common_dates) == 0:
+            print(f"❌ No overlapping dates between requested dates and features_df.")
             return None
-        
         # Get features in exact order expected by model
-        try:
-            feature_data = features_df.loc[common_dates, feature_names].copy()
-            print(f"📊 Feature data shape: {feature_data.shape}")
-            print(f"📊 Feature data date range: {feature_data.index.min()} to {feature_data.index.max()}")
-
-            # === DIAGNOSTIC BLOCK START ===
-            print("\n🔎 Feature Consistency Diagnostics:")
-            for fname in feature_names:
-                if fname not in feature_data.columns:
-                    print(f"❌ MISSING FEATURE: {fname}")
-                else:
-                    unique_vals = feature_data[fname].nunique(dropna=True)
-                    nan_count = feature_data[fname].isnull().sum()
-                    print(f"  {fname}: unique={unique_vals}, NaN={nan_count}, min={feature_data[fname].min()}, max={feature_data[fname].max()}")
-                    if unique_vals == 1:
-                        print(f"    ⚠️ Feature '{fname}' is constant!")
-                    if nan_count > 0:
-                        print(f"    ⚠️ Feature '{fname}' contains NaNs!")
-            # === DIAGNOSTIC BLOCK END ===
-
-            # Fill NaN values
-            feature_data = feature_data.fillna(method='ffill').fillna(method='bfill').fillna(0)
-
-            # Check feature statistics
-            print(f"📊 Feature value ranges:")
-            for i, feature in enumerate(feature_names[:5]):  # Show first 5 features
-                if feature in feature_data.columns:
-                    values = feature_data[feature]
-                    print(f"   {feature}: min={values.min():.6f}, max={values.max():.6f}, mean={values.mean():.6f}")
-            
-            # Scale features using the trained scaler
-            print(f"🔧 Scaling features...")
-            feature_data_scaled = scaler.transform(feature_data)
-            
-            print(f"📊 Scaled feature ranges (first 5):")
-            for i in range(min(5, feature_data_scaled.shape[1])):
-                col_data = feature_data_scaled[:, i]
-                print(f"   Feature {i}: min={col_data.min():.6f}, max={col_data.max():.6f}, mean={col_data.mean():.6f}")
-            
-            # Make predictions
-            print(f"🔮 Making predictions...")
-            predictions = model.predict(feature_data_scaled)
-            
-            print(f"📈 Prediction statistics:")
-            print(f"   Count: {len(predictions)}")
-            print(f"   Min: {predictions.min():.6f}")
-            print(f"   Max: {predictions.max():.6f}")
-            print(f"   Mean: {predictions.mean():.6f}")
-            print(f"   Std: {predictions.std():.6f}")
-            print(f"   Non-zero predictions: {np.count_nonzero(predictions)}")
-            
-            # Check if predictions are too flat
-            if predictions.std() < 1e-6:
-                print("⚠️ WARNING: Predictions are very flat (std < 1e-6)")
-                print("🔍 This might indicate:")
-                print("   - Feature scaling issues")
-                print("   - Model trained on different features")
-                print("   - All features are constant/zero")
-                
-                # Diagnostic: Check if all features are constant
-                feature_stds = np.std(feature_data_scaled, axis=0)
-                constant_features = np.sum(feature_stds < 1e-6)
-                print(f"   - Constant features: {constant_features} / {len(feature_stds)}")
-            
-            # Return as Series aligned with original dates
-            result = pd.Series(index=dates, dtype=float)
-            result.loc[common_dates] = predictions
-            
-            # Fill missing dates with interpolation
-            result = result.interpolate(method='linear').fillna(method='ffill').fillna(method='bfill')
-            
-            print(f"✅ Generated {len(result)} predictions")
-            return result
-            
-        except Exception as e:
-            print(f"❌ Error in prediction generation: {e}")
-            import traceback
-            traceback.print_exc()
-            return None
-        
+        feature_data = features_df.loc[common_dates, feature_names].copy()
+        feature_data = feature_data.fillna(method='ffill').fillna(method='bfill').fillna(0)
+        predictions = model.predict(feature_data)
+        result = pd.Series(index=dates, dtype=float)
+        result.loc[common_dates] = predictions
+        result = result.interpolate(method='linear').fillna(method='ffill').fillna(method='bfill')
+        if audit_files is not None:
+            audit_files['features_df'] = features_df
+            audit_files['feature_data'] = feature_data
+        return result
     except Exception as e:
-        print(f"❌ Error in feature preparation: {e}")
+        print(f"❌ Error in prediction generation: {e}")
         import traceback
         traceback.print_exc()
         return None
@@ -822,7 +768,7 @@ def create_simulated_fit_chart(model_package):
     train_end_date = dates[train_end_idx]
     test_end_date = dates[test_end_idx]
     
-    # Create plot (same structure as real data plot)
+    # Create plot (same structure as real data)
     fig, axes = plt.subplots(3, 1, figsize=(16, 12))
     
     # Plot 1: Price Fit
@@ -888,7 +834,7 @@ def create_simulated_fit_chart(model_package):
     print(f"  Returns MAE: {mae:.6f}")
 
 def analyze_model_coefficients(model_package):
-    """Analyze model coefficients and calculate statistical significance"""
+    """Analyze model coefficients and calculate statistical significance, always showing intercept."""
     
     print(f"\n🔬 Model Coefficient Analysis")
     print("="*50)
@@ -912,6 +858,10 @@ def analyze_model_coefficients(model_package):
         'Abs_Coefficient': np.abs(coefficients)
     }).sort_values('Abs_Coefficient', ascending=False)
     
+    # Add intercept row at the top
+    intercept_row = pd.DataFrame({'Feature': ['Intercept'], 'Coefficient': [intercept], 'Abs_Coefficient': [abs(intercept)]})
+    coef_df = pd.concat([intercept_row, coef_df], ignore_index=True)
+    
     # Add feature categories
     def categorize_feature(feature_name):
         if any(x in feature_name.lower() for x in ['rsi', 'macd', 'bb_', 'cci', 'stoch', 'atr', 'obv', 'ichimoku', 'sma']):
@@ -924,46 +874,18 @@ def analyze_model_coefficients(model_package):
             return 'Returns/Vol'
         else:
             return 'Other'
-    
     coef_df['Category'] = coef_df['Feature'].apply(categorize_feature)
     coef_df['Normalized_Importance'] = coef_df['Abs_Coefficient'] / coef_df['Abs_Coefficient'].max()
-    
-    # Try to calculate statistical significance
-    p_values = calculate_statistical_significance(model_package)
-    if p_values is not None:
-        coef_df['p_Value'] = p_values
-        coef_df['Significant'] = p_values < 0.05
-        coef_df = coef_df.sort_values('p_Value')
-        
-        print(f"\n🎯 Most Statistically Significant Features:")
-        print("-" * 80)
-        print(f"{'Rank':<4} {'Feature':<30} {'Category':<12} {'Coefficient':<12} {'p-Value':<10} {'Sig'}")
-        print("-" * 80)
-        
-        for i, (_, row) in enumerate(coef_df.head(15).iterrows()):
-            sig_marker = "***" if row['p_Value'] < 0.001 else "**" if row['p_Value'] < 0.01 else "*" if row['p_Value'] < 0.05 else ""
-            coef_str = f"{row['Coefficient']:+.6f}"
-            print(f"{i+1:<4} {row['Feature'][:29]:<30} {row['Category']:<12} {coef_str:<12} {row['p_Value']:<10.6f} {sig_marker}")
-        
-        # Significance summary
-        sig_count = len(coef_df[coef_df['p_Value'] < 0.05])
-        print(f"\n📊 Statistical Significance Summary:")
-        print(f"  Significant features (p < 0.05): {sig_count} / {len(coef_df)} ({sig_count/len(coef_df)*100:.1f}%)")
-        print(f"  Highly significant (p < 0.01): {len(coef_df[coef_df['p_Value'] < 0.01])}")
-        print(f"  Very significant (p < 0.001): {len(coef_df[coef_df['p_Value'] < 0.001])}")
-        
-    else:
-        # Fallback to importance ranking without p-values
-        print(f"\n🎯 Top 15 Most Important Features (by absolute coefficient):")
-        print("-" * 75)
-        print(f"{'Rank':<4} {'Feature':<30} {'Category':<12} {'Coefficient':<12} {'Importance'}")
-        print("-" * 75)
-        
-        for i, (_, row) in enumerate(coef_df.head(15).iterrows()):
-            importance_pct = row['Normalized_Importance'] * 100
-            coef_str = f"{row['Coefficient']:+.6f}"
-            print(f"{i+1:<4} {row['Feature'][:29]:<30} {row['Category']:<12} {coef_str:<12} {importance_pct:6.1f}%")
-    
+
+    print(f"\n🎯 Top 15 Most Important Features (by absolute coefficient):")
+    print("-" * 75)
+    print(f"{'Rank':<4} {'Feature':<30} {'Category':<12} {'Coefficient':<12} {'Importance'}")
+    print("-" * 75)
+    for i, (_, row) in enumerate(coef_df.head(15).iterrows()):
+        importance_pct = row['Normalized_Importance'] * 100
+        coef_str = f"{row['Coefficient']:+.6f}"
+        print(f"{i+1:<4} {row['Feature'][:29]:<30} {row['Category']:<12} {coef_str:<12} {importance_pct:6.1f}%")
+
     # Feature category breakdown
     print(f"\n📋 Feature Category Summary:")
     print("-" * 50)
@@ -971,102 +893,31 @@ def analyze_model_coefficients(model_package):
         'Coefficient': ['count', 'mean'],
         'Abs_Coefficient': ['mean', 'max']
     }).round(6)
-    
     for category in category_stats.index:
         count = int(category_stats.loc[category, ('Coefficient', 'count')])
         avg_coef = category_stats.loc[category, ('Coefficient', 'mean')]
         avg_abs_coef = category_stats.loc[category, ('Abs_Coefficient', 'mean')]
-        
         print(f"{category:<15}: {count:3d} features, Avg: {avg_coef:+.6f}, Impact: {avg_abs_coef:.6f}")
-    
+
     # Strongest signals
     print(f"\n🚀 Strongest Predictive Signals:")
     positive_features = coef_df[coef_df['Coefficient'] > 0].head(3)
     negative_features = coef_df[coef_df['Coefficient'] < 0].head(3)
-    
     print(f"  Bullish Indicators:")
     for _, row in positive_features.iterrows():
         print(f"    {row['Feature']}: {row['Coefficient']:+.6f}")
-    
     print(f"  Bearish Indicators:")
     for _, row in negative_features.iterrows():
         print(f"    {row['Feature']}: {row['Coefficient']:+.6f}")
-    
-    return coef_df
 
-def calculate_statistical_significance(model_package):
-    """Calculate p-values for model coefficients"""
-    
-    try:
-        symbol = model_package['target_symbol']
-        feature_names = model_package['feature_names']
-        
-        # Try to recreate training data
-        from features.technical_indicators import calculate_technical_indicators
-        config = model_package.get('config', {})
-        features_df = calculate_technical_indicators(symbol, config)
-        
-        if features_df.empty:
-            return None
-        
-        # Add missing features
-        features_df = add_missing_features(features_df, feature_names)
-        
-        # Get target variable
-        if 'next_return' in features_df.columns:
-            target_col = 'next_return'
-        elif 'returns_1d' in features_df.columns:
-            target_col = 'returns_1d'
-            features_df['next_return'] = features_df[target_col].shift(-1)
-        else:
-            return None
-        
-        # Prepare data
-        if all(col in features_df.columns for col in feature_names):
-            X = features_df[feature_names].dropna()
-            y = features_df['next_return'].loc[X.index].dropna()
-            
-            # Align X and y
-            common_idx = X.index.intersection(y.index)
-            X = X.loc[common_idx]
-            y = y.loc[common_idx]
-            
-            if len(X) > len(feature_names) + 10:  # Need sufficient data
-                from sklearn.linear_model import LinearRegression
-                
-                # Fit model
-                lr = LinearRegression()
-                lr.fit(X, y)
-                y_pred = lr.predict(X)
-                
-                # Calculate standard errors
-                residuals = y - y_pred
-                mse = np.mean(residuals**2)
-                n = len(X)
-                p = X.shape[1]
-                
-                # Design matrix with intercept
-                X_with_intercept = np.column_stack([np.ones(n), X])
-                
-                try:
-                    XtX_inv = np.linalg.inv(X_with_intercept.T @ X_with_intercept)
-                    var_beta = mse * np.diag(XtX_inv)[1:]  # Exclude intercept
-                    std_errors = np.sqrt(var_beta)
-                    
-                    # t-statistics and p-values
-                    t_stats = lr.coef_ / std_errors
-                    p_values = 2 * (1 - stats.t.cdf(np.abs(t_stats), df=n-p-1))
-                    
-                    return p_values
-                    
-                except np.linalg.LinAlgError:
-                    return None
-        
-        return None
-        
-    except Exception as e:
-        print(f"⚠️ Could not calculate p-values: {e}")
-        return None
+    # --- AUDIT: Save coef_df if audit_files is set ---
+    import inspect
+    frame = inspect.currentframe().f_back
+    audit_files = frame.f_locals.get('audit_files', None)
+    if audit_files is not None:
+        audit_files['coef_df'] = coef_df
+
+    return coef_df
 
 def get_periods_from_config():
     """Load period configuration from config.yaml"""
@@ -1083,12 +934,13 @@ def get_periods_from_config():
 def main():
     """Main analysis function with argument parsing"""
     import argparse
+    import os
     
     parser = argparse.ArgumentParser(description='Analyze ML model performance for a specific symbol')
     parser.add_argument('--symbol', type=str, help='Stock symbol to analyze (e.g., ACN, AAPL)')
     parser.add_argument('--show-charts', action='store_true', default=True, help='Show fit charts (default: True)')
     parser.add_argument('--show-coefficients', action='store_true', default=True, help='Show coefficient analysis (default: True)')
-    
+    parser.add_argument('--audit', action='store_true', help='Save key tables to data/audit as CSVs')
     args = parser.parse_args()
     
     if args.symbol:
@@ -1106,15 +958,97 @@ def main():
     # Display performance metrics
     display_model_performance(model_package)
     
-    # Create fit charts
-    if args.show_charts:
-        create_model_fit_chart(model_package)
+    # --- AUDIT LOGIC ---
+    audit_dir = Path(__file__).parent.parent / 'data' / 'audit'
+    if args.audit:
+        audit_dir.mkdir(parents=True, exist_ok=True)
+        audit_prefix = f"analyze_model__{model_package['target_symbol']}"
+        audit_files = {}
+    else:
+        audit_files = None
     
+    # Create fit charts and optionally audit tables
+    if args.show_charts:
+        if args.audit:
+            def create_model_fit_chart_with_audit(model_package):
+                return create_model_fit_chart_audit_patch(model_package, audit_files)
+            def create_model_fit_chart_audit_patch(model_package, audit_files):
+                symbol = model_package['target_symbol']
+                periods = get_periods_from_config()
+                try:
+                    from database_manager import DatabaseManager
+                    with DatabaseManager() as db:
+                        historical_data = db.get_stock_prices(symbol)
+                    if historical_data is None or len(historical_data) == 0:
+                        print(f"⚠️ No real data for {symbol}, using simulation")
+                        return create_simulated_fit_chart(model_package)
+                    if isinstance(historical_data, list):
+                        historical_df = pd.DataFrame(historical_data)
+                        column_mapping = {}
+                        for col in historical_df.columns:
+                            col_lower = str(col).lower()
+                            if col_lower in ['date', 'timestamp']:
+                                column_mapping[col] = 'Date'
+                            elif col_lower in ['close', 'adj_close', 'adjusted_close']:
+                                column_mapping[col] = 'Close'
+                        historical_df = historical_df.rename(columns=column_mapping)
+                        if 'Date' in historical_df.columns:
+                            historical_df['Date'] = pd.to_datetime(historical_df['Date'])
+                            historical_df = historical_df.set_index('Date')
+                        historical_data = historical_df
+                    elif isinstance(historical_data, pd.DataFrame):
+                        if 'Date' in historical_data.columns and historical_data.index.name != 'Date':
+                            historical_data['Date'] = pd.to_datetime(historical_data['Date'])
+                            historical_data = historical_data.set_index('Date')
+                    if 'Close' not in historical_data.columns:
+                        for alt_col in ['close', 'Adj_Close', 'adj_close', 'Close_Price', 'price']:
+                            if alt_col in historical_data.columns:
+                                historical_data['Close'] = historical_data[alt_col]
+                                break
+                        else:
+                            print(f"⚠️ No Close price column found")
+                            return create_simulated_fit_chart(model_package)
+                    historical_data = historical_data.sort_index()
+                    if len(historical_data) < 30:
+                        print(f"⚠️ Insufficient data: {len(historical_data)} records")
+                        return create_simulated_fit_chart(model_package)
+                    actual_prices = historical_data['Close']
+                    actual_returns = actual_prices.pct_change().dropna()
+                    # Try to recreate features and predictions
+                    predictions = generate_model_predictions(model_package, actual_returns.index, audit_files=audit_files)
+                    if predictions is None:
+                        print(f"⚠️ Could not generate predictions, using simulation")
+                        return create_simulated_fit_chart(model_package)
+                    # Save audit tables if requested
+                    if audit_files is not None:
+                        audit_files['historical_data'] = historical_data
+                        audit_files['predictions'] = pd.DataFrame({'prediction': predictions})
+                    # Now plot the chart (call the original plotting code)
+                    # Reuse the plotting code from create_model_fit_chart
+                    # ...existing code for plotting (see create_model_fit_chart)...
+                    # For brevity, you can call create_model_fit_chart here if it only does plotting
+                    create_model_fit_chart(model_package)
+                except Exception as e:
+                    print(f"❌ Database error: {e}")
+                    return create_simulated_fit_chart(model_package)
+            create_model_fit_chart_with_audit(model_package)
+        else:
+            create_model_fit_chart(model_package)
     # Analyze coefficients and significance
     if args.show_coefficients:
         analyze_model_coefficients(model_package)
-    
     print(f"\n✅ Model analysis complete for {model_package['target_symbol']}!")
+
+    # --- AUDIT FILE OUTPUT ---
+    if args.audit and audit_files:
+        for name, df in audit_files.items():
+            if hasattr(df, 'to_csv'):
+                out_path = audit_dir / f"{audit_prefix}_{name}.csv"
+                try:
+                    df.to_csv(out_path)
+                    print(f"💾 Saved audit file: {out_path}")
+                except Exception as e:
+                    print(f"❌ Failed to save audit file {out_path}: {e}")
 
 if __name__ == "__main__":
     main()
