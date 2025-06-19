@@ -1,7 +1,9 @@
 # Data paths
 data_path: "data/"
-fred_db_path: "C:/Users/Kenrm/repositories/fred-database/data/fred_data.db"
+fred_db_path: "C:/Users/Kenrm/repositories/fred-database/database/fred_data.db"
 validated_symbols_path: "C:/Users/Kenrm/repositories/stock-symbol-analyzer/data/validated_symbols.yaml"
+stock_db_path: "C:/Users/Kenrm/repositories/stock-database/database/stock_prediction.db"
+
 
 # Stock symbols
 target_symbol: "MSFT"
@@ -23,10 +25,9 @@ peer_symbols:
 
 # Model parameters
 prediction_horizon: 5
-# --- Target variable control ---
-target_variable: "price"   # "returns" or "price"
-target_window: 5             # Look-ahead window for target (in days)
-test_size: 0.2
+
+
+
 
 # Trading strategy parameters
 trading:
@@ -39,98 +40,200 @@ trading:
   thresholds:
     long_signal: 0.008        # 0.8% prediction threshold for long
     short_signal: -0.008      # -0.8% prediction threshold for short
-    stop_loss: -0.05          # 5% stop loss
-    take_profit: 0.10         # 10% take profit
-
-# Feature parameters
-features:
-  technical:
-    rsi:
-      enabled: true
-      period: 21
-    macd:
-      enabled: true
-      fast_period: 12
-      slow_period: 26
-      signal_period: 9
-    bollinger:
-      enabled: true
-      window: 15
-      std: 1.5
-    cci:
-      enabled: true
-      period: 20
-    stochastic:
-      enabled: true
-      k_period: 14
-      d_period: 3
-    atr:
-      enabled: true
-      period: 14
-    obv:
-      enabled: true
-      window: 20
-    ichimoku:
-      enabled: true
-      conversion_period: 9
-      base_period: 26
-    sma:
-      enabled: true
-      periods: [5, 10, 20, 50]
-    donchian:
-      enabled: true
-      window: 20
-    adx:
-      enabled: true
-      period: 14
-    parabolic_sar:
-      enabled: true
-      step: 0.02
-      max_step: 0.2
-  
-  lags:
-    enabled: true
-    price_columns: ["Close", "High", "Low", "Open", "Volume"]
-    lag_periods: [1, 2, 3, 5]
-    include_target: true
-    include_peers: false
-    rolling_features:
-      enabled: true
-      windows: [5, 10, 20]
-      functions: ["mean", "std", "min", "max"]
-
-# API configuration
-yahoo_finance:
-  batch_size: 100
-  rate_limit: 2000  # requests per hour
-
-# Backtesting parameters
-backtesting:
-    initial_capital: 5000
-    entry_threshold: 295.0  # Set to realistic price level
-    exit_threshold: 305.0   # Set to realistic price level
-    position_size: 0.1  # 10% of capital per trade
-    max_positions: 5
-    stop_loss: 0.02    # 2% stop loss
-    take_profit: 0.05  # 5% take profit
-    max_trades: 10     # Maximum number of trades allowed
+    stop_loss: 0.0025          # 5% stop loss
+    take_profit: 0.005         # 10% take profit
 
 # Training and strategy periods
 periods:
   training:
-    start: '2020-01-01'
+    start: '2021-01-01'
     end: '2024-12-31'
   test:
     start: '2024-01-01'
     end: '2024-12-31' 
   strategy:
     start: '2025-01-01'
-    end: '2025-06-01'
+    end: '2025-09-01'
 
-# Alpaca API configuration
-alpaca:
-  api_key: "PKZ9T5ZGPQSFJJSB0J4N"
-  secret_key: "zEyCkauW58QOnloTgQHj5kBNQg78SJfbGUDm4fYg"
-  base_url: "https://paper-api.alpaca.markets/v2"  # Paper trading
-  # base_url: "https://api.alpaca.markets"  # Live trading (use with caution)
+test_size: 0.2
+
+#--- Target variable control ---
+target_variable: price_d10
+
+
+features:
+  technical:
+    enabled: true
+    features:
+      rsi_7: true
+      rsi_14: true
+      rsi_30: true
+      rsi_50: true
+      sma_5: true
+      sma_10: true
+      sma_20: true
+      sma_50: true
+      sma_100: true
+      sma_200: true
+      ema_5: true
+      ema_10: true
+      ema_20: true
+      ema_50: true
+      ema_100: true
+      ema_200: true
+      macd_6_13_5: true
+      macd_signal_6_13_5: true
+      macd_hist_6_13_5: true
+      macd_12_26_9: true
+      macd_signal_12_26_9: true
+      macd_hist_12_26_9: true
+      macd_19_39_9: true
+      macd_signal_19_39_9: true
+      macd_hist_19_39_9: true
+      bb_upper_10: true
+      bb_middle_10: true
+      bb_lower_10: true
+      bb_upper_14: true
+      bb_middle_14: true
+      bb_lower_14: true
+      bb_upper_20: true
+      bb_middle_20: true
+      bb_lower_20: true
+      bb_upper_50: true
+      bb_middle_50: true
+      bb_lower_50: true
+      stoch_k_7_3: true
+      stoch_d_7_3: true
+      stoch_k_10_3: true
+      stoch_d_10_3: true
+      stoch_k_14_3: true
+      stoch_d_14_3: true
+      stoch_k_21_3: true
+      stoch_d_21_3: true
+      stoch_k_30_3: true
+      stoch_d_30_3: true
+      cci_10: true
+      cci_14: true
+      cci_20: true
+      cci_40: true
+      atr_7: true
+      atr_14: true
+      atr_21: true
+      atr_30: true
+      obv_10: true
+      obv_20: true
+      obv_50: true
+      ichimoku_conv_9: true
+      ichimoku_base_26: true
+      ichimoku_spanb_52: true
+      ichimoku_conv_7: true
+      ichimoku_base_22: true
+      ichimoku_conv_12: true
+      ichimoku_base_33: true
+      donchian_high_10: true
+      donchian_low_10: true
+      donchian_high_20: true
+      donchian_low_20: true
+      donchian_high_50: true
+      donchian_low_50: true
+      adx_7: true
+      adx_14: true
+      adx_21: true
+      adx_30: true
+      psar_001_02: true
+      psar_002_02: true
+      psar_004_02: true
+      close_lag_1: true
+      close_lag_2: true
+      close_lag_3: true
+      close_lag_5: true
+      close_lag_10: true
+      close_lag_20: true
+      high_lag_1: true
+      high_lag_2: true
+      high_lag_3: true
+      high_lag_5: true
+      high_lag_10: true
+      high_lag_20: true
+      low_lag_1: true
+      low_lag_2: true
+      low_lag_3: true
+      low_lag_5: true
+      low_lag_10: true
+      low_lag_20: true
+      open_lag_1: true
+      open_lag_2: true
+      open_lag_3: true
+      open_lag_5: true
+      open_lag_10: true
+      open_lag_20: true
+      volume_lag_1: true
+      volume_lag_2: true
+      volume_lag_3: true
+      volume_lag_5: true
+      volume_lag_10: true
+      volume_lag_20: true
+  signals:
+    enabled: true
+    features:
+      rsi_signal_7: true
+      rsi_signal_14: true
+      rsi_signal_30: true
+      rsi_signal_50: true
+      macd_cross_signal_12_26_9: true
+      macd_cross_signal_6_13_5: true
+      macd_cross_signal_19_39_9: true
+      bb_signal_10: true
+      bb_signal_14: true
+      bb_signal_20: true
+      bb_signal_50: true
+      stoch_signal_7_3: true
+      stoch_signal_14_3: true
+      stoch_signal_30_3: true
+      cci_signal_10: true
+      cci_signal_20: true
+      cci_signal_40: true
+      adx_signal_7: true
+      adx_signal_14: true
+      adx_signal_21: true
+      adx_signal_30: true
+      donchian_signal_10: true
+      donchian_signal_20: true
+      donchian_signal_50: true
+      psar_signal_001_02: true
+      psar_signal_002_02: true
+      psar_signal_004_02: true
+  fred:
+    enabled: true
+    features:
+      fred_BASE: true
+      fred_CIVPART: true
+      fred_CPIAUCSL: true
+      fred_CPILFESL: true
+      fred_CSUSHPISA: true
+      fred_DGS10: true
+      fred_DGS2: true
+      fred_DGS30: true
+      fred_DJIA: true
+      fred_EMRATIO: true
+      fred_FEDFUNDS: true
+      fred_GDP: true
+      fred_GDPC1: true
+      fred_GDPPOT: true
+      fred_HOUST: true
+      fred_M1SL: true
+      fred_M2SL: true
+      fred_MORTGAGE30US: true
+      fred_NASDAQCOM: true
+      fred_PAYEMS: true
+      fred_PCE: true
+      fred_PCEDG: true
+      fred_PCEND: true
+      fred_PCEPI: true
+      fred_PCEPILFE: true
+      fred_PCESV: true
+      fred_SP500: true
+      fred_TB3MS: true
+      fred_UNRATE: true
+
 

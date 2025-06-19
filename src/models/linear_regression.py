@@ -11,23 +11,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def prepare_target_variable(features_df: pd.DataFrame, target_days: int = 1) -> pd.DataFrame:
-    """Prepare target variable (future returns)"""
-    
-    # Assuming we have returns_1d in the features
-    if 'returns_1d' not in features_df.columns:
-        logger.error("returns_1d column not found in features")
-        return pd.DataFrame()
-    
-    # Create target: future return
-    target_col = f'target_return_{target_days}d'
-    features_df[target_col] = features_df['returns_1d'].shift(-target_days)
-    
-    # Remove rows without target (last few rows)
-    features_df = features_df.dropna(subset=[target_col])
-    
-    return features_df
-
 def train_linear_regression_model(X, y, fit_intercept: bool = True):
     """Train linear regression model (no scaling of features or target)
     X: DataFrame of features (already selected and ordered)
@@ -77,36 +60,3 @@ def train_linear_regression_model(X, y, fit_intercept: bool = True):
     logger.info(f"Test MSE: {metrics['test_mse']:.6f}")
 
     return model, None, feature_columns, metrics
-
-if __name__ == "__main__":
-    # Test the model
-    import sys
-    from pathlib import Path
-    import yaml
-    
-    # Add paths
-    sys.path.append(str(Path(__file__).parent.parent.parent / 'src'))
-    from features.technical_indicators import calculate_technical_indicators
-    
-    # Load config
-    config_path = Path(__file__).parent.parent.parent / 'config.yaml'
-    with open(config_path, 'r') as f:
-        config = yaml.safe_load(f)
-    
-    symbol = config['target_symbol']
-    
-    # Generate features
-    features = calculate_technical_indicators(symbol, config)
-    
-    if not features.empty:
-        # Train model
-        result = train_linear_regression_model(features, config)
-        
-        if result:
-            model, scaler, feature_names, metrics = result
-            print(f"✅ Model trained successfully!")
-            print(f"Metrics: {metrics}")
-        else:
-            print("❌ Model training failed")
-    else:
-        print("❌ No features available")

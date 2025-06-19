@@ -382,33 +382,81 @@ class MLTradingStrategy:
         return data
     
     def backtest_strategy(self, data, max_position_size=1.0, stop_loss=None, take_profit=None):
-        """Run the backtesting simulation"""
-        
+        """Run the backtesting simulation with optional stop-loss and take-profit"""
         print(f"🏃‍♂️ Running backtest simulation...")
-        
         capital = self.initial_capital
         position = 0  # Current position (-1 = short, 0 = neutral, 1 = long)
         shares = 0
-        
+        entry_price = None
         self.trades = []
         self.portfolio_history = []
         
+        # Ensure stop_loss and take_profit are positive (percentages)
+        if stop_loss is not None and stop_loss < 0:
+            print(f"⚠️ Warning: stop_loss in config is negative ({stop_loss}); should be positive. Using abs value.")
+            stop_loss = abs(stop_loss)
+        if take_profit is not None and take_profit < 0:
+            print(f"⚠️ Warning: take_profit in config is negative ({take_profit}); should be positive. Using abs value.")
+            take_profit = abs(take_profit)
+
         for i, (date, row) in enumerate(data.iterrows()):
-            
             price = row['close']
             signal = row['signal']
             prediction = row['prediction']
             actual_return = row['actual_return'] if 'actual_return' in row else 0
-            
-            # Calculate current portfolio value
-            portfolio_value = capital + (shares * price if shares != 0 else 0)
-            
-            # Position sizing based on prediction confidence
-            confidence = row['confidence']
-            position_size = min(max_position_size, confidence * 2)  # Scale by confidence
-            
-            # --- NEW LOGIC: Always close any existing position before opening a new one on a signal ---
-            # Close long position if signal is not hold and we are long
+            confidence = row['confidence'] if 'confidence' in row else 1.0
+            position_size = min(max_position_size, confidence * 2)
+
+            # --- Stop-loss and take-profit logic for long positions (PREEMPTIVE) ---
+            stop_or_take_triggered = False
+            if shares > 0 and entry_price is not None:
+                if stop_loss is not None and price <= entry_price * (1 - stop_loss):
+                    capital += shares * price * (1 - self.transaction_cost)
+                    self.trades.append({
+                        'date': date,
+                        'action': 'stop_loss',
+                        'price': price,
+                        'shares': shares,
+                        'value': shares * price,
+                        'capital': capital,
+                        'prediction': prediction
+                    })
+                    shares = 0
+                    position = 0
+                    entry_price = None
+                    stop_or_take_triggered = True
+                elif take_profit is not None and price >= entry_price * (1 + take_profit):
+                    capital += shares * price * (1 - self.transaction_cost)
+                    self.trades.append({
+                        'date': date,
+                        'action': 'take_profit',
+                        'price': price,
+                        'shares': shares,
+                        'value': shares * price,
+                        'capital': capital,
+                        'prediction': prediction
+                    })
+                    shares = 0
+                    position = 0
+                    entry_price = None
+                    stop_or_take_triggered = True
+            # If stop-loss or take-profit triggered, skip rest of this bar
+            if stop_or_take_triggered:
+                current_portfolio_value = capital + (shares * price if shares != 0 else 0)
+                self.portfolio_history.append({
+                    'date': date,
+                    'price': price,
+                    'capital': capital,
+                    'shares': shares,
+                    'portfolio_value': current_portfolio_value,
+                    'position': position,
+                    'signal': signal,
+                    'prediction': prediction,
+                    'actual_return': actual_return
+                })
+                continue
+
+            # --- Signal-based position closure logic (only if no stop/take triggered) ---
             if shares > 0 and signal != 0:
                 capital += shares * price * (1 - self.transaction_cost)
                 self.trades.append({
@@ -422,7 +470,7 @@ class MLTradingStrategy:
                 })
                 shares = 0
                 position = 0
-            # Close short position if signal is not hold and we are short
+                entry_price = None
             if shares < 0 and signal != 0:
                 capital += -shares * price * (1 - self.transaction_cost)
                 self.trades.append({
@@ -436,7 +484,8 @@ class MLTradingStrategy:
                 })
                 shares = 0
                 position = 0
-            
+                entry_price = None
+
             # Open new position if signal is buy or sell
             if signal == 1:
                 shares_to_buy = int((capital * position_size) / price)
@@ -446,7 +495,7 @@ class MLTradingStrategy:
                         capital -= cost
                         shares += shares_to_buy
                         position = 1
-                        
+                        entry_price = price
                         self.trades.append({
                             'date': date,
                             'action': 'buy',
@@ -457,18 +506,17 @@ class MLTradingStrategy:
                             'prediction': prediction,
                             'entry_price': price
                         })
-            elif signal == -1:
-                # Uncomment below to allow shorting
-                # shares_to_short = int((capital * position_size) / price)
-                # if shares_to_short > 0:
-                #     capital += shares_to_short * price * (1 - self.transaction_cost)
-                #     shares -= shares_to_short
-                #     position = -1
-                pass
-            
-            # Record portfolio state
+            # Uncomment below to allow shorting
+            # elif signal == -1:
+            #     shares_to_short = int((capital * position_size) / price)
+            #     if shares_to_short > 0:
+            #         cost = shares_to_short * price * (1 + self.transaction_cost)
+            #         if cost <= capital:
+            #             capital += shares_to_short * price * (1 - self.transaction_cost)
+            #             shares -= shares_to_short
+            #             position = -1
+            #             entry_price = price
             current_portfolio_value = capital + (shares * price if shares != 0 else 0)
-            
             self.portfolio_history.append({
                 'date': date,
                 'price': price,
@@ -480,7 +528,6 @@ class MLTradingStrategy:
                 'prediction': prediction,
                 'actual_return': actual_return
             })
-        
         # Close final position
         if shares != 0:
             final_price = data['close'].iloc[-1]
@@ -494,12 +541,10 @@ class MLTradingStrategy:
                 'capital': capital,
                 'prediction': 0
             })
-        
         print(f"✅ Backtest complete!")
         print(f"  Total trades: {len(self.trades)}")
         print(f"  Final capital: ${capital:,.2f}")
         print(f"  Total return: {(capital/self.initial_capital - 1)*100:.2f}%")
-        
         return capital
     
     def calculate_performance_metrics(self):
@@ -728,7 +773,7 @@ def load_trading_config():
         return config.get('trading', {})
     return {}
 
-def run_backtest(target_symbol=None, initial_capital=100000, transaction_cost=0.001, max_position_size=1.0, use_signals=False, use_model=False, use_technical=False):
+def run_backtest(target_symbol=None, initial_capital=100000, transaction_cost=0.001, max_position_size=1.0, use_signals=False, use_model=False, use_technical=False, stop_loss=None, take_profit=None):
     """Run complete backtesting workflow for specified symbol, using config values."""
     print("🏁 ML Trading Strategy Backtester")
     print("="*50)
@@ -799,8 +844,8 @@ def run_backtest(target_symbol=None, initial_capital=100000, transaction_cost=0.
         # Generate signals
         data_with_signals = strategy.generate_signals(data, **params)
         
-        # Run backtest
-        final_capital = strategy.backtest_strategy(data_with_signals, max_position_size=max_position_size)
+        # Run backtest (now passes stop_loss and take_profit)
+        final_capital = strategy.backtest_strategy(data_with_signals, max_position_size=max_position_size, stop_loss=stop_loss, take_profit=take_profit)
         
         # Calculate metrics
         metrics, df = strategy.calculate_performance_metrics()
@@ -868,6 +913,8 @@ def main():
     initial_capital = args.capital if args.capital is not None else trading_config.get('initial_capital', 100000)
     transaction_cost = args.transaction_cost if args.transaction_cost is not None else trading_config.get('transaction_cost', 0.001)
     max_position_size = args.max_position_size if args.max_position_size is not None else trading_config.get('max_position_size', 1.0)
+    stop_loss = trading_config.get('stop_loss', None)
+    take_profit = trading_config.get('take_profit', None)
 
     if args.symbol:
         print(f"🎯 Running backtest for: {args.symbol.upper()}")
@@ -884,7 +931,9 @@ def main():
         max_position_size,
         use_signals=args.use_signals,
         use_model=args.use_model,
-        use_technical=args.use_technical
+        use_technical=args.use_technical,
+        stop_loss=stop_loss,
+        take_profit=take_profit
     )
 
     if results:

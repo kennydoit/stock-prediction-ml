@@ -25,7 +25,7 @@ def find_latest_model_for_symbol(symbol):
     # Check both possible directories
     models_dirs = [
         Path(__file__).parent.parent / 'data' / 'model_outputs',
-        Path(__file__).parent.parent / 'models'
+        Path(__file__).parent.pTop 15 Most Important Featuresarent / 'models'
     ]
     
     for models_dir in models_dirs:
