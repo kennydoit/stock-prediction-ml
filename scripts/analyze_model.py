@@ -25,7 +25,7 @@ def find_latest_model_for_symbol(symbol):
     # Check both possible directories
     models_dirs = [
         Path(__file__).parent.parent / 'data' / 'model_outputs',
-        Path(__file__).parent.pTop 15 Most Important Featuresarent / 'models'
+        Path(__file__).parent.parent / 'models'
     ]
     
     for models_dir in models_dirs:
@@ -57,18 +57,6 @@ def find_latest_model_for_symbol(symbol):
                 print(f"   No .pkl files found in {models_dir}")
     
     return None
-
-def extract_symbol_from_filename(filename):
-    """Extract symbol from model filename"""
-    # Common patterns: enhanced_linear_regression_ACN_target_only_20250608_194712.pkl
-    parts = filename.replace('.pkl', '').split('_')
-    
-    # Look for symbol patterns (usually 2-5 uppercase letters)
-    for part in parts:
-        if part.isupper() and 2 <= len(part) <= 5:
-            return part
-    
-    return "Unknown"
 
 def analyze_latest_model(target_symbol=None):
     """Analyze the latest saved model for specified symbol"""
@@ -137,17 +125,17 @@ def analyze_latest_model(target_symbol=None):
     print(f"  Features: {model_package['feature_count']}")
     print(f"  Include Peers: {'Yes' if model_package.get('include_peers', False) else 'No'}")
     
-    # --- Patch: Use OLS coefficients from audit file if available ---
-    import os
+    # --- Updated: Use OLS coefficients path from model_package ---
     import pandas as pd
-    from pathlib import Path
-    symbol = model_package['target_symbol']
-    audit_dir = Path(__file__).parent.parent / 'data' / 'audit'
-    ols_coef_path = audit_dir / f"train_enhanced_model__{symbol}_ols_coefficients.csv"
-    if ols_coef_path.exists():
+    ols_coef_path = model_package.get('model_coefficients', None)
+    if ols_coef_path and Path(ols_coef_path).exists():
         ols_df = pd.read_csv(ols_coef_path)
         # Overwrite model_package['coefficients'] with OLS values
-        ols_coef_dict = dict(zip(ols_df['feature'], ols_df['coefficient']))
+        if 'feature' in ols_df.columns and 'coefficient' in ols_df.columns:
+            ols_coef_dict = dict(zip(ols_df['feature'], ols_df['coefficient']))
+        else:
+            # If saved as a Series, use index and first column
+            ols_coef_dict = dict(zip(ols_df.iloc[:,0], ols_df.iloc[:,1]))
         model_package['coefficients'] = ols_coef_dict
         print(f"⚠️ Using OLS coefficients from {ols_coef_path} for all analysis and reporting.")
     else:
@@ -226,178 +214,6 @@ def create_model_fit_chart(model_package):
     
     # Get periods from config first
     periods = get_periods_from_config()
-    
-    # Get ALL historical data (not just recent)
-    try:
-        from database_manager import DatabaseManager
-        
-        with DatabaseManager() as db:
-            # Get ALL available data for the symbol
-            historical_data = db.get_stock_prices(symbol)
-            
-        if historical_data is None or len(historical_data) == 0:
-            print(f"⚠️ No real data for {symbol}, using simulation")
-            return create_simulated_fit_chart(model_package)
-        
-        # Convert to DataFrame with proper format
-        if isinstance(historical_data, list):
-            historical_df = pd.DataFrame(historical_data)
-            
-            # Standardize column names
-            column_mapping = {}
-            for col in historical_df.columns:
-                col_lower = str(col).lower()
-                if col_lower in ['date', 'timestamp']:
-                    column_mapping[col] = 'Date'
-                elif col_lower in ['close', 'adj_close', 'adjusted_close']:
-                    column_mapping[col] = 'Close'
-            
-            historical_df = historical_df.rename(columns=column_mapping)
-            
-            if 'Date' in historical_df.columns:
-                historical_df['Date'] = pd.to_datetime(historical_df['Date'])
-                historical_df = historical_df.set_index('Date')
-            
-            historical_data = historical_df
-        
-        elif isinstance(historical_data, pd.DataFrame):
-            if 'Date' in historical_data.columns and historical_data.index.name != 'Date':
-                historical_data['Date'] = pd.to_datetime(historical_data['Date'])
-                historical_data = historical_data.set_index('Date')
-        
-        # Ensure we have Close prices
-        if 'Close' not in historical_data.columns:
-            for alt_col in ['close', 'Adj_Close', 'adj_close', 'Close_Price', 'price']:
-                if alt_col in historical_data.columns:
-                    historical_data['Close'] = historical_data[alt_col]
-                    break
-            else:
-                print(f"⚠️ No Close price column found")
-                return create_simulated_fit_chart(model_package)
-        
-        # Sort by date
-        historical_data = historical_data.sort_index()
-        
-        print(f"📊 Full data range available: {historical_data.index.min().date()} to {historical_data.index.max().date()} ({len(historical_data)} records)")
-        
-        # Determine what data to show based on periods configuration
-        if periods and 'training' in periods and 'strategy' in periods:
-            train_start = pd.to_datetime(periods['training']['start'])
-            train_end = pd.to_datetime(periods['training']['end'])
-            strategy_start = pd.to_datetime(periods['strategy']['start'])
-            strategy_end = pd.to_datetime(periods['strategy']['end'])
-            
-            print(f"📅 Config periods:")
-            print(f"  Training: {train_start.date()} to {train_end.date()}")
-            print(f"  Strategy: {strategy_start.date()} to {strategy_end.date()}")
-            
-            # Check what data we actually have
-            data_start = historical_data.index.min()
-            data_end = historical_data.index.max()
-            
-            # Determine the best visualization approach
-            if data_start <= train_start and data_end >= strategy_end:
-                # We have data spanning all periods - show full timeline
-                period_data = historical_data[
-                    (historical_data.index >= train_start) & 
-                    (historical_data.index <= strategy_end)
-                ]
-                show_actual_periods = True
-                chart_type = "Full Period Data"
-                print(f"✅ Using full period data: {train_start.date()} to {strategy_end.date()}")
-                
-            elif data_start >= strategy_start:
-                # We only have strategy period data
-                period_data = historical_data[
-                    (historical_data.index >= strategy_start) & 
-                    (historical_data.index <= strategy_end)
-                ]
-                show_actual_periods = False
-                chart_type = "Strategy Period Only"
-                print(f"⚠️ Only strategy period data available: {data_start.date()} to {data_end.date()}")
-                
-            elif data_end <= train_end:
-                # We only have training period data
-                period_data = historical_data[
-                    (historical_data.index >= train_start) & 
-                    (historical_data.index <= train_end)
-                ]
-                show_actual_periods = False
-                chart_type = "Training Period Only"
-                print(f"⚠️ Only training period data available: {data_start.date()} to {data_end.date()}")
-                
-            else:
-                # Mixed or partial data - use what we have
-                period_data = historical_data
-                show_actual_periods = False
-                chart_type = "Partial Data"
-                print(f"⚠️ Partial period data: {data_start.date()} to {data_end.date()}")
-                
-        else:
-            # No period config - use all available data
-            period_data = historical_data
-            show_actual_periods = False
-            chart_type = "All Available Data"
-            print(f"⚠️ No period config found, using all available data")
-        
-        if len(period_data) < 30:
-            print(f"⚠️ Insufficient data: {len(period_data)} records")
-            return create_simulated_fit_chart(model_package)
-        
-        # Generate model predictions for the data
-        actual_prices = period_data['Close']
-        actual_returns = actual_prices.pct_change().dropna()
-
-        # --- FIX: Use correct target definition from config.yaml ---
-        config_path = Path(__file__).parent.parent / 'config.yaml'
-        with open(config_path, 'r') as f:
-            config = yaml.safe_load(f)
-        target_variable = config.get('target_variable', 'returns')
-        target_window = int(config.get('target_window', 1))
-
-        if target_variable == 'price':
-            # Predict price in target_window days
-            # Align predictions with the shifted price (future price)
-            # Shift actual prices to get the true target (future price)
-            actual_prices_shifted = actual_prices.shift(-target_window)
-            # Only keep indices where both features and shifted prices are available
-            valid_idx = actual_prices_shifted.dropna().index.intersection(model_package['features_df'].index)
-            predictions = generate_model_predictions(model_package, valid_idx)
-            # Align actual and predicted
-            actual_price_series = actual_prices_shifted.loc[valid_idx]
-            predicted_price_series = predictions.loc[valid_idx]
-            dates = valid_idx
-            # For returns/residuals plots, use price differences
-            actual_returns = actual_price_series.pct_change().dropna()
-            predicted_returns = predicted_price_series.pct_change().dropna()
-            # Align for residuals
-            common_ret_idx = actual_returns.index.intersection(predicted_returns.index)
-            actual_returns = actual_returns.loc[common_ret_idx]
-            predicted_returns = predicted_returns.loc[common_ret_idx]
-            residuals = actual_returns - predicted_returns
-        else:
-            # Default: predict returns
-            predictions = generate_model_predictions(model_package, actual_returns.index)
-            # Align actual and predicted
-            valid_idx = actual_returns.index.intersection(predictions.index)
-            actual_returns = actual_returns.loc[valid_idx]
-            predicted_returns = predictions.loc[valid_idx]
-            # Reconstruct price series from returns
-            initial_price = actual_prices.loc[valid_idx[0]]
-            actual_price_series = initial_price * (1 + actual_returns).cumprod()
-            predicted_price_series = initial_price * (1 + predicted_returns).cumprod()
-            dates = valid_idx
-            residuals = actual_returns - predicted_returns
-
-        if predictions is None or len(dates) == 0:
-            print(f"⚠️ Could not generate predictions, using simulation")
-            return create_simulated_fit_chart(model_package)
-
-        print(f"✅ Using real {symbol} data with model predictions")
-        
-    except Exception as e:
-        print(f"❌ Database error: {e}")
-        return create_simulated_fit_chart(model_package)
     
     # Calculate cumulative price series from returns
     initial_price = actual_prices.iloc[0]
@@ -522,7 +338,13 @@ def create_model_fit_chart(model_package):
     ax3.grid(True, alpha=0.3)
     ax3.tick_params(axis='x', rotation=45)
     
+    # Save the fit chart to the model outputs folder
+    model_outputs_dir = Path(__file__).parent.parent / 'data' / 'model_outputs'
+    model_outputs_dir.mkdir(parents=True, exist_ok=True)
+    chart_path = model_outputs_dir / f"fit_chart_{symbol}.png"
     plt.tight_layout()
+    plt.savefig(chart_path)
+    print(f"[INFO] Fit chart saved to {chart_path}")
     plt.show()
     
     # Display fit statistics
@@ -573,265 +395,7 @@ def generate_model_predictions(model_package, dates, audit_files=None):
         traceback.print_exc()
         return None
 
-def add_comprehensive_features(features_df, required_features, symbol):
-    """Add all lag and rolling features comprehensively"""
-    
-    print(f"🔧 Adding comprehensive features...")
-    print(f"📊 Available columns: {list(features_df.columns)}")
-    
-    # Get price data from database to create proper lag/rolling features
-    # First check if we need price data
-    needs_price_data = any('_lag_' in f or '_roll_' in f for f in required_features if f not in features_df.columns)
-    
-    if needs_price_data:
-        # Get symbol from the first technical indicator calculation
-        try:
-            # Import database manager to get raw price data
-            import sys
-            from pathlib import Path
-            sys.path.append(str(Path(__file__).parent.parent / 'database'))
-            from database_manager import DatabaseManager
-            
-            print(f"🔍 Getting price data for symbol: {symbol}")
-            
-            db_manager = DatabaseManager()
-            with db_manager:
-                price_data = db_manager.get_stock_prices(symbol)
-                
-                if not price_data.empty:
-                    # Align price data with features_df index
-                    common_dates = features_df.index.intersection(price_data.index)
-                    price_subset = price_data.loc[common_dates]
-                    
-                    print(f"📈 Using price data for lag/rolling features: {len(price_subset)} records")
-                    
-                    # Add basic price columns to features_df if not present
-                    price_columns = ['close', 'high', 'low', 'open', 'volume']
-                    for col in price_columns:
-                        if col in price_subset.columns and col not in features_df.columns:
-                            features_df[col] = price_subset[col]
-                            print(f"   ➕ Added {col} column from price data")
-                
-        except Exception as e:
-            print(f"⚠️ Could not get price data: {e}")
-    
-    # Identify base columns for lag/rolling features
-    base_columns = ['close', 'high', 'low', 'open', 'volume']
-    
-    # Add lag features
-    lag_features = [f for f in required_features if '_lag_' in f]
-    print(f"📊 Adding {len(lag_features)} lag features...")
-    
-    for feature in lag_features:
-        if feature not in features_df.columns:
-            try:
-                parts = feature.split('_lag_')
-                if len(parts) == 2:
-                    base_col = parts[0]
-                    lag_periods = int(parts[1])
-                    
-                    # Map feature names to actual columns
-                    if base_col.lower() in features_df.columns:
-                        source_col = base_col.lower()
-                    elif base_col in features_df.columns:
-                        source_col = base_col
-                    elif base_col.upper() in features_df.columns:
-                        source_col = base_col.upper()
-                    else:
-                        # Try common mappings
-                        mappings = {
-                            'close': ['close', 'Close', 'adj_close'],
-                            'high': ['high', 'High'],
-                            'low': ['low', 'Low'],
-                            'open': ['open', 'Open'],
-                            'volume': ['volume', 'Volume']
-                        }
-                        source_col = None
-                        for alt_col in mappings.get(base_col.lower(), []):
-                            if alt_col in features_df.columns:
-                                source_col = alt_col
-                                break
-                    
-                    if source_col:
-                        features_df[feature] = features_df[source_col].shift(lag_periods)
-                        print(f"   ✅ {feature} = {source_col}.shift({lag_periods})")
-                    else:
-                        features_df[feature] = 0
-                        print(f"   ⚠️ {feature} = 0 (source {base_col} not found)")
-            except Exception as e:
-                features_df[feature] = 0
-                print(f"   ❌ {feature} = 0 (error: {e})")
-    
-    # Add rolling features
-    rolling_features = [f for f in required_features if '_roll_' in f]
-    print(f"📊 Adding {len(rolling_features)} rolling features...")
-    
-    for feature in rolling_features:
-        if feature not in features_df.columns:
-            try:
-                parts = feature.split('_')
-                if len(parts) >= 4 and parts[1] == 'roll':
-                    base_col = parts[0]
-                    window = int(parts[2])
-                    func = parts[3]
-                    
-                    # Find source column
-                    if base_col.lower() in features_df.columns:
-                        source_col = base_col.lower()
-                    elif base_col in features_df.columns:
-                        source_col = base_col
-                    else:
-                        source_col = None
-                        mappings = {
-                            'close': ['close', 'Close', 'adj_close'],
-                            'high': ['high', 'High'],
-                            'low': ['low', 'Low'],
-                            'open': ['open', 'Open'],
-                            'volume': ['volume', 'Volume']
-                        }
-                        for alt_col in mappings.get(base_col.lower(), []):
-                            if alt_col in features_df.columns:
-                                source_col = alt_col
-                                break
-                    
-                    if source_col:
-                        if func == 'mean':
-                            features_df[feature] = features_df[source_col].rolling(window).mean()
-                        elif func == 'std':
-                            features_df[feature] = features_df[source_col].rolling(window).std()
-                        elif func == 'min':
-                            features_df[feature] = features_df[source_col].rolling(window).min()
-                        elif func == 'max':
-                            features_df[feature] = features_df[source_col].rolling(window).max()
-                        else:
-                            features_df[feature] = 0
-                        print(f"   ✅ {feature} = {source_col}.rolling({window}).{func}()")
-                    else:
-                        features_df[feature] = 0
-                        print(f"   ⚠️ {feature} = 0 (source {base_col} not found)")
-            except Exception as e:
-                features_df[feature] = 0
-                print(f"   ❌ {feature} = 0 (error: {e})")
-    
-    # Add any other missing features as zeros
-    missing_others = [f for f in required_features if f not in features_df.columns and '_lag_' not in f and '_roll_' not in f]
-    if missing_others:
-        print(f"📊 Adding {len(missing_others)} other missing features as zeros...")
-        for feature in missing_others:
-            features_df[feature] = 0
-            print(f"   ⚠️ {feature} = 0")
-    
-    return features_df
-
-def create_simulated_fit_chart(model_package):
-    """Fallback with realistic simulated data"""
-    
-    print(f"📈 Creating simulated fit chart...")
-    
-    symbol = model_package['target_symbol']
-    r2 = model_package['metrics']['test_r2']
-    
-    # Use realistic starting prices
-    symbol_prices = {
-        'ACN': 320, 'AAPL': 190, 'MSFT': 380, 'GOOGL': 140, 
-        'META': 350, 'NVDA': 450, 'AMZN': 145
-    }
-    
-    initial_price = symbol_prices.get(symbol, 200)
-    
-    # Generate realistic data
-    np.random.seed(42)
-    n_days = 90
-    volatility = 0.025
-    
-    dates = pd.date_range(end=pd.Timestamp.now(), periods=n_days, freq='B')
-    actual_returns = np.random.normal(0.0005, volatility, n_days)
-    
-    # Generate predictions based on R² quality
-    prediction_quality = max(0, abs(r2))
-    noise_level = np.sqrt(max(0.01, 1 - prediction_quality)) * volatility * 0.8
-    predicted_returns = actual_returns * prediction_quality + np.random.normal(0, noise_level, n_days)
-    
-    # Convert to price series
-    actual_price_series = initial_price * (1 + actual_returns).cumprod()
-    predicted_price_series = initial_price * (1 + predicted_returns).cumprod()
-    
-    actual_returns = pd.Series(actual_returns, index=dates)
-    predicted_returns = pd.Series(predicted_returns, index=dates)
-    actual_price_series = pd.Series(actual_price_series, index=dates)
-    predicted_price_series = pd.Series(predicted_price_series, index=dates)
-    
-    # Define periods
-    train_end_idx = int(n_days * 0.7)
-    test_end_idx = int(n_days * 0.9)
-    
-    train_end_date = dates[train_end_idx]
-    test_end_date = dates[test_end_idx]
-    
-    # Create plot (same structure as real data)
-    fig, axes = plt.subplots(3, 1, figsize=(16, 12))
-    
-    # Plot 1: Price Fit
-    ax1 = axes[0]
-    ax1.plot(dates, actual_price_series, label='Actual Prices', linewidth=2, color='blue', alpha=0.8)
-    ax1.plot(dates, predicted_price_series, label='Model Predictions', linewidth=2, color='red', alpha=0.8)
-    
-    ax1.axvline(x=train_end_date, color='green', linestyle='--', alpha=0.7, linewidth=2, label='Train/Test Split')
-    ax1.axvline(x=test_end_date, color='orange', linestyle='--', alpha=0.7, linewidth=2, label='Test/Strategy Split')
-    
-    ax1.axhline(y=0, color='black', linestyle='-', alpha=0.3)
-    
-    y_max = max(actual_price_series.max(), predicted_price_series.max())
-    ax1.text(dates[train_end_idx//2], y_max*0.95, 'TRAINING', ha='center', va='top', fontweight='bold', color='green', fontsize=10)
-    ax1.text(dates[(train_end_idx + test_end_idx)//2], y_max*0.95, 'TESTING', ha='center', va='top', fontweight='bold', color='orange', fontsize=10)
-    ax1.text(dates[(test_end_idx + len(dates))//2], y_max*0.95, 'STRATEGY', ha='center', va='top', fontweight='bold', color='red', fontsize=10)
-    
-    current_price = actual_price_series.iloc[-1]
-    ax1.set_title(f'Model Price Fit - {symbol} (Test R² = {r2:.3f}) - Current: ${current_price:.2f} [Simulated]', fontsize=14)
-    ax1.set_ylabel('Price ($)')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
-    
-    # Plot 2: Returns
-    ax2 = axes[1]
-    ax2.plot(dates, actual_returns, label='Actual Returns', linewidth=1.5, color='blue', alpha=0.7)
-    ax2.plot(dates, predicted_returns, label='Predicted Returns', linewidth=1.5, color='red', alpha=0.7)
-    ax2.axvline(x=train_end_date, color='green', linestyle='--', alpha=0.7, linewidth=2)
-    ax2.axvline(x=test_end_date, color='orange', linestyle='--', alpha=0.7, linewidth=2)
-    ax2.axhline(y=0, color='black', linestyle='-', alpha=0.3)
-    ax2.set_title(f'Returns Prediction Fit - {symbol}')
-    ax2.set_ylabel('Daily Returns')
-    ax2.legend()
-    ax2.grid(True, alpha=0.3)
-    
-    # Plot 3: Residuals
-    ax3 = axes[2]
-    residuals = actual_returns - predicted_returns
-    ax3.plot(dates, residuals, label='Prediction Residuals', linewidth=1, color='green', alpha=0.7)
-    ax3.axhline(y=0, color='black', linestyle='--', alpha=0.5)
-    ax3.axvline(x=train_end_date, color='green', linestyle='--', alpha=0.7, linewidth=2)
-    ax3.axvline(x=test_end_date, color='orange', linestyle='--', alpha=0.7, linewidth=2)
-    
-    # Add residual statistics
-    rmse = np.sqrt(np.mean(residuals**2))
-    mae = np.mean(np.abs(residuals))
-    ax3.text(0.02, 0.95, f'RMSE: {rmse:.6f}\nMAE: {mae:.6f}', transform=ax3.transAxes, va='top', fontsize=10)
-    
-    ax3.set_title('Prediction Residuals Over Time')
-    ax3.set_xlabel('Date')
-    ax3.set_ylabel('Residuals')
-    ax3.legend()
-    ax3.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.show()
-    
-    correlation = np.corrcoef(actual_returns, predicted_returns)[0,1]
-    print(f"\n📊 Simulated Fit Statistics:")
-    print(f"  Returns Correlation: {correlation:.4f}")
-    print(f"  Returns R²: {correlation**2:.4f}")
-    print(f"  Returns RMSE: {rmse:.6f}")
-    print(f"  Returns MAE: {mae:.6f}")
+# removed create_simulated_fit_chart because if there is a problem with the real model, we need to diagnose it, and not create a fake chart
 
 def analyze_model_coefficients(model_package):
     """Analyze model coefficients and calculate statistical significance, always showing intercept."""
@@ -976,12 +540,25 @@ def main():
                 symbol = model_package['target_symbol']
                 periods = get_periods_from_config()
                 try:
+                    # Dynamically import DatabaseManager from path in config.yaml
+                    import yaml
+                    import sys
+                    from pathlib import Path
+                    config_path = Path(__file__).parent.parent / 'config.yaml'
+                    with open(config_path, 'r') as f:
+                        config = yaml.safe_load(f)
+                    db_manager_path = config.get('database_manager_path')
+                    if not db_manager_path:
+                        raise ImportError('database_manager_path not set in config.yaml')
+                    db_manager_dir = str(Path(db_manager_path).parent)
+                    if db_manager_dir not in sys.path:
+                        sys.path.insert(0, db_manager_dir)
                     from database_manager import DatabaseManager
                     with DatabaseManager() as db:
                         historical_data = db.get_stock_prices(symbol)
                     if historical_data is None or len(historical_data) == 0:
-                        print(f"⚠️ No real data for {symbol}, using simulation")
-                        return create_simulated_fit_chart(model_package)
+                        print(f"⚠️ No real data for {symbol}, cannot generate fit chart.")
+                        return
                     if isinstance(historical_data, list):
                         historical_df = pd.DataFrame(historical_data)
                         column_mapping = {}
@@ -1006,19 +583,19 @@ def main():
                                 historical_data['Close'] = historical_data[alt_col]
                                 break
                         else:
-                            print(f"⚠️ No Close price column found")
-                            return create_simulated_fit_chart(model_package)
+                            print(f"⚠️ No Close price column found. Cannot generate fit chart.")
+                            return
                     historical_data = historical_data.sort_index()
                     if len(historical_data) < 30:
-                        print(f"⚠️ Insufficient data: {len(historical_data)} records")
-                        return create_simulated_fit_chart(model_package)
+                        print(f"⚠️ Insufficient data: {len(historical_data)} records. Cannot generate fit chart.")
+                        return
                     actual_prices = historical_data['Close']
                     actual_returns = actual_prices.pct_change().dropna()
                     # Try to recreate features and predictions
                     predictions = generate_model_predictions(model_package, actual_returns.index, audit_files=audit_files)
                     if predictions is None:
-                        print(f"⚠️ Could not generate predictions, using simulation")
-                        return create_simulated_fit_chart(model_package)
+                        print(f"⚠️ Could not generate predictions. Cannot generate fit chart.")
+                        return
                     # Save audit tables if requested
                     if audit_files is not None:
                         audit_files['historical_data'] = historical_data
@@ -1030,7 +607,6 @@ def main():
                     create_model_fit_chart(model_package)
                 except Exception as e:
                     print(f"❌ Database error: {e}")
-                    return create_simulated_fit_chart(model_package)
             create_model_fit_chart_with_audit(model_package)
         else:
             create_model_fit_chart(model_package)

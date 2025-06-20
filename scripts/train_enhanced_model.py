@@ -78,8 +78,10 @@ def train_enhanced_model(target_symbol: str, include_peers: bool = False, save_m
     signal_flags = config.get('features', {}).get('signals', {}).get('features', {})
     fred_flags = config.get('features', {}).get('fred', {}).get('features', {})
     # peer_symbols = config.get('peer_symbols', []) if include_peers or auto_peers else []
+    # Freature switches all set to True for development and testing purposes. Booleans will be pulled from config.yaml or CLI
     use_technical = True
     use_signals = True
+    use_fred = True
     features_df = load_modeling_data_from_db(
         config,
         target_symbol,
@@ -185,25 +187,6 @@ def train_enhanced_model(target_symbol: str, include_peers: bool = False, save_m
         y.to_frame().to_csv(diag_dir / f"y_with_nans_{target_symbol}.csv", index=False)
         return None
 
-    # --- Check for date alignment between X and y BEFORE dropping date column ---
-    # This must be done immediately after X and y are created from features_df
-    if 'date' in features_df.columns:
-        x_dates = set(features_df['date'])
-    else:
-        x_dates = set()
-    # y is a Series from features_df[target_col_actual], so get its index or use features_df['date']
-    y_dates = set(features_df['date']) if 'date' in features_df.columns else set()
-    if x_dates and y_dates:
-        if x_dates != y_dates:
-            print("[WARNING] Date mismatch between X and y before model fit!")
-            only_in_x = sorted(list(x_dates - y_dates))
-            only_in_y = sorted(list(y_dates - x_dates))
-            print(f"[DIAG] Dates only in X: {only_in_x}")
-            print(f"[DIAG] Dates only in y: {only_in_y}")
-            # Keep only records with matching dates
-            matching_dates = x_dates & y_dates
-            features_df = features_df[features_df['date'].isin(matching_dates)]
-            print(f"[WARNING] Filtered to {len(matching_dates)} matching dates for X and y.")
     # Now proceed to drop date from X and y as before
 
     # Train model
@@ -241,6 +224,13 @@ def train_enhanced_model(target_symbol: str, include_peers: bool = False, save_m
         model_name = f'enhanced_linear_regression_{target_symbol}_{model_type}_{timestamp}.pkl'
         model_path = models_dir / model_name
         
+        # --- Feature breakdown (moved up for use in model_package) ---
+        feature_types = {
+            'Technical': len([c for c in features_df.columns if any(x in c for x in ['rsi', 'macd', 'bb_', 'cci', 'stoch', 'atr', 'obv', 'ichimoku', 'sma'])]),
+            'Returns/Vol': len([c for c in features_df.columns if any(x in c for x in ['returns', 'volatility', 'volume'])]),
+            'Lagged': len([c for c in features_df.columns if 'lag_' in c or 'roll_' in c]),
+        }
+
         model_package = {
             'model': model,
             'scaler': scaler,
@@ -261,6 +251,51 @@ def train_enhanced_model(target_symbol: str, include_peers: bool = False, save_m
             # --- Store modeling data directly in model_package ---
             'features_df': features_df.copy(),
             'target': features_df[target_col_actual].copy() if target_col_actual in features_df.columns else None
+        }
+        # Add coefficients to model_package for audit and downstream analysis
+        if hasattr(model, 'coef_') and hasattr(model, 'intercept_'):
+            coef_dict = {'Intercept': model.intercept_}
+            for name, coef in zip(feature_names, model.coef_):
+                coef_dict[name] = coef
+            model_package['coefficients'] = coef_dict
+        else:
+            model_package['coefficients'] = None
+
+        # --- Export model coefficients from the predictive model ---
+        coef_path = models_dir / f"model_coefficients_{target_symbol}_{model_type}_{timestamp}.csv"
+        if hasattr(model, 'coef_') and hasattr(model, 'intercept_'):
+            import pandas as pd
+            coef_df = pd.DataFrame({'feature': feature_names, 'coefficient': model.coef_})
+            coef_df.loc[-1] = ['Intercept', model.intercept_]
+            coef_df.index = coef_df.index + 1
+            coef_df = coef_df.sort_index()
+            coef_df.to_csv(coef_path, index=False)
+            print(f"✅ Model coefficients saved to {coef_path}")
+        else:
+            coef_path = None
+            print("[WARNING] Model does not have coef_ and intercept_ attributes; coefficients not saved.")
+
+        model_package = {
+            'model': model,
+            'scaler': scaler,
+            'feature_names': feature_names,
+            'target_symbol': target_symbol,
+            'metrics': metrics,
+            'config': config,
+            'trained_at': timestamp,
+            'feature_count': len(feature_names),
+            'include_peers': include_peers,
+            'model_type': model_type,
+            'feature_breakdown': feature_types,
+            'data_range': {
+                'start': str(features_df.index.min()),
+                'end': str(features_df.index.max()),
+                'records': len(features_df)
+            },
+            # --- Store modeling data directly in model_package ---
+            'features_df': features_df.copy(),
+            'target': features_df[target_col_actual].copy() if target_col_actual in features_df.columns else None,
+            'model_coefficients': str(coef_path) if coef_path else None,
         }
         # Add coefficients to model_package for audit and downstream analysis
         if hasattr(model, 'coef_') and hasattr(model, 'intercept_'):
@@ -303,14 +338,7 @@ def train_enhanced_model(target_symbol: str, include_peers: bool = False, save_m
         return model_path
     
     return model_result
-
-    # --- Feature breakdown (moved up for use in model_package) ---
-    feature_types = {
-        'Technical': len([c for c in features_df.columns if any(x in c for x in ['rsi', 'macd', 'bb_', 'cci', 'stoch', 'atr', 'obv', 'ichimoku', 'sma'])]),
-        'Returns/Vol': len([c for c in features_df.columns if any(x in c for x in ['returns', 'volatility', 'volume'])]),
-        'Lagged': len([c for c in features_df.columns if 'lag_' in c or 'roll_' in c]),
-        'Peer': len([c for c in features_df.columns if any(x in c for x in ['rel_', 'avg_rel'])])
-    }
+    
 
 def drop_correlated_features(features_df, threshold=0.9):
     """Drop features that are highly correlated with each other based on a correlation threshold."""
@@ -320,7 +348,7 @@ def drop_correlated_features(features_df, threshold=0.9):
     upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(bool))
     # Find features with correlation above the threshold
     to_drop = [column for column in upper.columns if any(upper[column] > threshold)]
-    print(f"Dropping {len(to_drop)} correlated features: {to_drop}")
+    print(f"\n[Dropping {len(to_drop)} correlated features: {to_drop}\n")
     return features_df.drop(columns=to_drop, errors='ignore')
 
 
@@ -500,11 +528,12 @@ def backward_selection(X, y, threshold_out=0.10, verbose=True):
             break
     return included
 
-def forward_selection(X, y, threshold_in=0.10, verbose=True):
+def forward_selection(X, y, threshold_in=0.10, max_features=10, verbose=True):
     """Perform forward selection based on p-values from statsmodels OLS."""
     import statsmodels.api as sm
     included = []
-    while True:
+    n_features = 0
+    while True and n_features < max_features:
         excluded = list(set(X.columns) - set(included))
         new_pvals = pd.Series(index=excluded, dtype=float)
         for new_col in excluded:
@@ -518,6 +547,7 @@ def forward_selection(X, y, threshold_in=0.10, verbose=True):
             included.append(best_feature)
             if verbose:
                 print(f'  Add {best_feature:30} with p-value {best_pval:.6f}')
+            n_features += 1
         else:
             break
     return included

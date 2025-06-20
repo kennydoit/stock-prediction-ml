@@ -3,31 +3,32 @@ data_path: "data/"
 fred_db_path: "C:/Users/Kenrm/repositories/fred-database/database/fred_data.db"
 validated_symbols_path: "C:/Users/Kenrm/repositories/stock-symbol-analyzer/data/validated_symbols.yaml"
 stock_db_path: "C:/Users/Kenrm/repositories/stock-database/database/stock_prediction.db"
-
+database_manager_path: 'C:/Users/Kenrm/repositories/stock-database/database/database_manager.py'
 
 # Stock symbols
 target_symbol: "MSFT"
-peer_symbols:
-  - "AAPL"
-  - "AMZN"
-  - "GOOGL"
-  - "META"
-  - "ORCL"
-  - "IBM"
-  - "CRM"
-  - "ADBE"
-  - "NVDA"
-  - "INTC"
-  - "SPY"
-  - "QQQ"
-  - "XLK"
-  - "VTI"
+
+peers:
+  use_peers:
+    enabled: true
+  peer_symbols:
+    - "AAPL"
+    - "AMZN"
+    - "GOOGL"
+    - "META"
+    - "ORCL"
+    - "IBM"
+    - "CRM"
+    - "ADBE"
+    - "NVDA"
+    - "INTC"
+    - "SPY"
+    - "QQQ"
+    - "XLK"
+    - "VTI"
 
 # Model parameters
 prediction_horizon: 5
-
-
-
 
 # Trading strategy parameters
 trading:
