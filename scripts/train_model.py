@@ -21,6 +21,7 @@ def create_period_masks():
     import pandas as pd
     from datetime import datetime
 
+
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
 
@@ -42,8 +43,16 @@ def load_data_from_stock_db(from_table, columns, symbols, start_date, end_date):
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
 
+    project_root = str(Path(__file__).parent.parent.parent.resolve())
+    print(f"🌍 Project root: {project_root}")
+    def expand_path(path):
+        return path.replace("$project_root", project_root)
+
     # --- DB paths ---
-    stock_db_path = config['stock_db_path']
+    stock_db_path = expand_path(config['stock_db_path'])
+
+    print(f"📊 Stock DB path: {stock_db_path}")
+
     conn = sqlite3.connect(stock_db_path)
 
     # --- Connect to stock DB ---
@@ -84,8 +93,17 @@ def load_data_from_fred_db(columns, start_date, end_date):
     with open('config.yaml', 'r') as file:
         config = yaml.safe_load(file)
 
+    project_root = str(Path(__file__).parent.parent.parent.resolve())
+    print(f"🌍 Project root: {project_root}")
+    def expand_path(path):
+        return path.replace("$project_root", project_root)
+
     # --- DB paths ---
-    fred_db_path = config['fred_db_path']
+    fred_db_path = expand_path(config['fred_db_path'])
+
+    print(f"📊 FRED DB path: {fred_db_path}")
+
+    # --- DB paths ---
     conn = sqlite3.connect(fred_db_path)
 
     # Load data from FRED database

@@ -1,9 +1,9 @@
 # Data paths
 data_path: "data/"
-fred_db_path: "C:/Users/Kenrm/repositories/fred-database/database/fred_data.db"
-validated_symbols_path: "C:/Users/Kenrm/repositories/stock-symbol-analyzer/data/validated_symbols.yaml"
-stock_db_path: "C:/Users/Kenrm/repositories/stock-database/database/stock_prediction.db"
-database_manager_path: 'C:/Users/Kenrm/repositories/stock-database/database/database_manager.py'
+fred_db_path: "$project_root/fred-database/database/fred_data.db"
+validated_symbols_path: "$project_root/stock-symbol-analyzer/data/validated_symbols.yaml"
+stock_db_path: "$project_root/stock-database/database/stock_database.db"
+database_manager_path: '$project_root/stock-database/database/database_manager.py'
 
 # Stock symbols
 target_symbol: "MSFT"
